@@ -1,16 +1,11 @@
-/*#cat {*/
-     /*width: 48px;*/
-     /*height: 48px;*/
-     /*background: url(cat_recolor.png) 0px -48px;*/
-     /*animation: walkLeft .4s steps(3) infinite;*/
- /*}*/
-
-/*@keyframes walkLeft {*/
-    /*100% { background-position: -144px -48px; }*/
-/*}*/
+.stand {
+    width: 48px;
+    height: 48px;
+    background: url(cat_recolor.png) -48px 0px;
+}
 
 
-#cat {
+.down {
     width: 48px;
     height: 48px;
     background: url(cat_recolor.png) 0px 0px;
@@ -21,14 +16,35 @@
     100% { background-position: -144px 0px; }
 }
 
-
-#cat {
-    width: 48px;
-    height: 48px;
-    background: url(cat_recolor.png) 0px 0px;
-    animation: walkDown .4s steps(3) infinite;
+.left {
+width: 48px;
+height: 48px;
+background: url(cat_recolor.png) 0px -48px;
+animation: walkLeft .4s steps(3) infinite;
 }
 
-@keyframes walkDown {
-    100% { background-position: -144px 0px; }
+@keyframes walkLeft {
+100% { background-position: -144px -48px; }
+}
+
+.right {
+    width: 48px;
+    height: 48px;
+    background: url(cat_recolor.png) 0px -96px;
+    animation: walkRight .4s steps(3) infinite;
+}
+
+@keyframes walkRight {
+    100% { background-position: -144px -96px; }
+}
+
+.up {
+    width: 48px;
+    height: 48px;
+    background: url(cat_recolor.png) 0px -144px;
+    animation: walkUp .4s steps(3) infinite;
+}
+
+@keyframes walkUp {
+    100% { background-position: -144px -144px; }
 }
