@@ -1,0 +1,34 @@
+/*#cat {*/
+     /*width: 48px;*/
+     /*height: 48px;*/
+     /*background: url(cat_recolor.png) 0px -48px;*/
+     /*animation: walkLeft .4s steps(3) infinite;*/
+ /*}*/
+
+/*@keyframes walkLeft {*/
+    /*100% { background-position: -144px -48px; }*/
+/*}*/
+
+
+#cat {
+    width: 48px;
+    height: 48px;
+    background: url(cat_recolor.png) 0px 0px;
+    animation: walkDown .4s steps(3) infinite;
+}
+
+@keyframes walkDown {
+    100% { background-position: -144px 0px; }
+}
+
+
+#cat {
+    width: 48px;
+    height: 48px;
+    background: url(cat_recolor.png) 0px 0px;
+    animation: walkDown .4s steps(3) infinite;
+}
+
+@keyframes walkDown {
+    100% { background-position: -144px 0px; }
+}
