@@ -1,14 +1,30 @@
-.stand {
-    width: 48px;
-    height: 48px;
-    background: url(cat_recolor.png) -48px 0px;
+body {
+    margin: 0;
+    padding: 0;
 }
 
+#gameArea {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
 
-.down {
+#cat {
     width: 48px;
     height: 48px;
-    background: url(cat_recolor.png) 0px 0px;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+/* white cat */
+
+.stand {
+    background: url(mushy.png) -48px 0px;
+}
+
+.down {
+    background: url(mushy.png) 0px 0px;
     animation: walkDown .4s steps(3) infinite;
 }
 
@@ -17,9 +33,7 @@
 }
 
 .left {
-width: 48px;
-height: 48px;
-background: url(cat_recolor.png) 0px -48px;
+background: url(mushy.png) 0px -48px;
 animation: walkLeft .4s steps(3) infinite;
 }
 
@@ -28,9 +42,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .right {
-    width: 48px;
-    height: 48px;
-    background: url(cat_recolor.png) 0px -96px;
+    background: url(mushy.png) 0px -96px;
     animation: walkRight .4s steps(3) infinite;
 }
 
@@ -39,12 +51,143 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .up {
-    width: 48px;
-    height: 48px;
-    background: url(cat_recolor.png) 0px -144px;
+    background: url(mushy.png) 0px -144px;
     animation: walkUp .4s steps(3) infinite;
 }
 
 @keyframes walkUp {
     100% { background-position: -144px -144px; }
 }
+
+
+
+/* Grey Cats */
+
+/*.stand {*/
+    /*background: url(mushy.png) -196px 0px;*/
+/*}*/
+
+/*.down {*/
+    /*background: url(mushy.png) -144px 0px;*/
+    /*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkDown {*/
+    /*100% { background-position: -288px 0px; }*/
+/*}*/
+
+/*.left {*/
+    /*background: url(mushy.png) -144px -48px;*/
+    /*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkLeft {*/
+    /*100% { background-position: -288px -48px; }*/
+/*}*/
+
+/*.right {*/
+    /*background: url(mushy.png) -144px -96px;*/
+    /*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkRight {*/
+    /*100% { background-position: -288px -96px; }*/
+/*}*/
+
+/*.up {*/
+    /*background: url(mushy.png) -144px -144px;*/
+    /*animation: walkUp .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkUp {*/
+    /*100% { background-position: -288px -144px; }*/
+/*}*/
+
+
+
+
+/* Light Brown Cats */
+
+/*.stand {*/
+    /*background: url(mushy.png) -48px -192px;*/
+/*}*/
+
+/*.down {*/
+    /*background: url(mushy.png) 0px -192px;*/
+    /*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkDown {*/
+    /*100% { background-position: -144px -196px; }*/
+/*}*/
+
+/*.left {*/
+    /*background: url(mushy.png) -0px -240px;*/
+    /*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkLeft {*/
+    /*100% { background-position: -144px -240px; }*/
+/*}*/
+
+/*.right {*/
+    /*background: url(mushy.png) -0px -288px;*/
+    /*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkRight {*/
+    /*100% { background-position: -144px -288px; }*/
+/*}*/
+
+/*.up {*/
+    /*background: url(mushy.png) -0px -336px;*/
+    /*animation: walkUp .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkUp {*/
+    /*100% { background-position: -144px -336px; }*/
+/*}*/
+
+
+
+/* Spotted Brown Cats */
+
+/*.stand {*/
+    /*background: url(mushy.png) -192px -192px;*/
+/*}*/
+
+/*.down {*/
+    /*background: url(mushy.png) -144px -192px;*/
+    /*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkDown {*/
+    /*100% { background-position: -288px -196px; }*/
+/*}*/
+
+/*.left {*/
+    /*background: url(mushy.png) -144px -240px;*/
+    /*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkLeft {*/
+    /*100% { background-position: -288px -240px; }*/
+/*}*/
+
+/*.right {*/
+    /*background: url(mushy.png) -144px -288px;*/
+    /*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkRight {*/
+    /*100% { background-position: -288px -288px; }*/
+/*}*/
+
+/*.up {*/
+    /*background: url(mushy.png) -144px -336px;*/
+    /*animation: walkUp .4s steps(3) infinite;*/
+/*}*/
+
+/*@keyframes walkUp {*/
+    /*100% { background-position: -288px -336px; }*/
+/*}*/
