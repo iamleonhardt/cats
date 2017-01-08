@@ -1,6 +1,9 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'VT323', monospace;
+    color: #ffffff;
+
 }
 
 #gameArea {
@@ -18,14 +21,33 @@ body {
     top: 0;
 }
 
+.heroUI {
+    display: inline-block;
+    position: relative;
+    bottom: 14px;
+}
+
+#heroName {
+    animation: nameColor 2s ease infinite;
+}
+
+@keyframes nameColor {
+    0% { color: #ffffff;}
+    50% { color: #d3d3d3;}
+    100% { color: #ffffff;}
+
+}
+#heroHp {
+
+}
 /* white cat */
 
 .stand {
-    background: url(mushy.png) -48px 0px;
+    background: url(images/heros/mushy.png) -48px 0px;
 }
 
 .down {
-    background: url(mushy.png) 0px 0px;
+    background: url(images/heros/mushy.png) 0px 0px;
     animation: walkDown .4s steps(3) infinite;
 }
 
@@ -34,7 +56,7 @@ body {
 }
 
 .left {
-background: url(mushy.png) 0px -48px;
+background: url(images/heros/mushy.png) 0px -48px;
 animation: walkLeft .4s steps(3) infinite;
 }
 
@@ -43,7 +65,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .right {
-    background: url(mushy.png) 0px -96px;
+    background: url(images/heros/mushy.png) 0px -96px;
     animation: walkRight .4s steps(3) infinite;
 }
 
@@ -52,7 +74,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .up {
-    background: url(mushy.png) 0px -144px;
+    background: url(images/heros/mushy.png) 0px -144px;
     animation: walkUp .4s steps(3) infinite;
 }
 
