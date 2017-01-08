@@ -15,15 +15,28 @@ function Hero(parent) {
     this.parent = parent;
     this.name = 'Mushie';
     this.hitpoints = 10;
-    this.heartbeatInterval = 50;
     this.speed = 8;
 
+    this.heartbeatInterval = 50;
+    this.animationClass = '';
     this.heroLeft = 0;
     this.heroTop = 0;
 
     this.init = function () {
         var domElem = this.createDomElem();
         return domElem;
+    };
+
+    this.startHeartbeat = function(){
+
+    };
+
+    this.stopHeartbeat = function(){
+
+    };
+
+    this.performHeartbeat = function(){
+
     };
 
     this.createDomElem = function () {
@@ -68,13 +81,18 @@ function Hero(parent) {
 
     this.moveLeft = function () {
         $('#hero').addClass('left');
-        this.heroLeft -= 1;
+        // this.heroLeft += 1;
         hero.style.left = (this.heroLeft * this.speed) + 'px';
+        console.log('this.heroLeft is : ', this.heroLeft);
     };
 }
 
 function GameController() {
     var self = this;
+    this.controlsLeft = 37;
+    this.controlsUp = 38;
+    this.controlsRight = 39;
+    this.controlsDown = 40;
 
     this.init = function (gameAreaSelector) {
         this.gameArea = $(gameAreaSelector);
@@ -92,20 +110,25 @@ function GameController() {
         console.log(e.which);
 
         switch (e.which) {
-            case 37: //left
+            case this.controlsLeft:
+                self.heroObj.heroLeft = -1;
+                self.heroObj.animationClass = 'left';
                 self.heroObj.moveLeft();
                 break;
 
-            case 38: //up
-                self.heroObj.moveUp();
+            case this.controlsUp:
+                self.heroObj.heroTop = -1;
+                self.heroObj.animationClass = 'up';
                 break;
 
-            case 39: // right
-                self.heroObj.moveRight();
+            case this.controlsRight:
+                self.heroObj.heroLeft = 1;
+                self.heroObj.animationClass = 'right';
                 break;
 
-            case 40: // down
-                self.heroObj.moveDown();
+            case this.controlsDown:
+                self.heroObj.heroTop = 1;
+                self.heroObj.animationClass = 'down';
                 break;
         }
     };
