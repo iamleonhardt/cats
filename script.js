@@ -13,7 +13,6 @@ $(document).ready(function () {
 
 });
 
-
 function Hero(parent) {
     this.parent = parent;
     this.heroLeft = 0;
@@ -31,29 +30,29 @@ function Hero(parent) {
                 id: 'hero',
                 class: 'stand'
             }
-            );
+        );
         return this.domElem;
     };
 
-    this.moveUp = function (){
+    this.moveUp = function () {
         $('#hero').addClass('up');
         this.heroTop -= 1;
         hero.style.top = (this.heroTop * this.speed) + 'px';
     };
 
-    this.moveRight = function (){
+    this.moveRight = function () {
         $('#hero').addClass('right');
         this.heroLeft++;
         hero.style.left = (this.heroLeft * this.speed) + 'px';
     };
 
-    this.moveDown = function (){
+    this.moveDown = function () {
         $('#hero').addClass('down');
         this.heroTop++;
         hero.style.top = (this.heroTop * this.speed) + 'px';
     };
 
-    this.moveLeft = function (){
+    this.moveLeft = function () {
         $('#hero').addClass('left');
         this.heroLeft -= 1;
         console.log('hero is : ', hero);

@@ -21,11 +21,11 @@ body {
 /* white cat */
 
 .stand {
-    background: url(mushy.png) -48px 0px;
+    background: url(images/heros/mushy.png) -48px 0px;
 }
 
 .down {
-    background: url(mushy.png) 0px 0px;
+    background: url(images/heros/mushy.png) 0px 0px;
     animation: walkDown .4s steps(3) infinite;
 }
 
@@ -34,7 +34,7 @@ body {
 }
 
 .left {
-background: url(mushy.png) 0px -48px;
+background: url(images/heros/mushy.png) 0px -48px;
 animation: walkLeft .4s steps(3) infinite;
 }
 
@@ -43,7 +43,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .right {
-    background: url(mushy.png) 0px -96px;
+    background: url(images/heros/mushy.png) 0px -96px;
     animation: walkRight .4s steps(3) infinite;
 }
 
@@ -52,7 +52,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .up {
-    background: url(mushy.png) 0px -144px;
+    background: url(images/heros/mushy.png) 0px -144px;
     animation: walkUp .4s steps(3) infinite;
 }
 
