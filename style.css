@@ -7,10 +7,11 @@ body {
 }
 
 #gameArea {
-    width: 100vw;
-    height: 100vh;
+    width: 1440px;
+    height: 900px;
     position: relative;
-    background-image: url(images/scene.png);
+    background-color: silver;
+    /*background-image: url(images/scene.png);*/
 }
 
 #hero {
@@ -43,7 +44,27 @@ body {
 }
 
 
-/* white cat */
+/* Tile Map */
+.tile {
+    height: 32px;
+    width: 32px;
+    position: relative;
+    float: left;
+}
+
+.grass {
+    background-color: mediumseagreen;
+    background: url(images/tileSets/castle.png) 0px -352px;
+
+}
+
+.dirt {
+    background-color: tan;
+    background: url(images/tileSets/castle.png) -224px -352px;
+
+}
+
+/* Hero 001 */
 
 .stand {
     background: url(images/heros/mushy.png) -48px 0px;
