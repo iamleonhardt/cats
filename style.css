@@ -1,6 +1,9 @@
 body {
     margin: 0;
     padding: 0;
+    font-family: 'VT323', monospace;
+    color: #ffffff;
+
 }
 
 #gameArea {
@@ -18,6 +21,25 @@ body {
     top: 0;
 }
 
+.heroUI {
+    display: inline-block;
+    position: relative;
+    bottom: 14px;
+}
+
+#heroName {
+    animation: nameColor 2s ease infinite;
+}
+
+@keyframes nameColor {
+    0% { color: #ffffff;}
+    50% { color: #d3d3d3;}
+    100% { color: #ffffff;}
+
+}
+#heroHp {
+
+}
 /* white cat */
 
 .stand {

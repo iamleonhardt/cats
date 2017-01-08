@@ -4,20 +4,22 @@
 
 var game;
 
-
 $(document).ready(function () {
     console.log('doc is ready');
     game = new GameController();
     game.init('#gameArea');
     game.addEventHandlers();
-
 });
 
 function Hero(parent) {
     this.parent = parent;
+    this.name = 'Mushie';
+    this.hitpoints = 10;
+    this.heartbeatInterval = 50;
+    this.speed = 8;
+
     this.heroLeft = 0;
     this.heroTop = 0;
-    this.speed = 8;
 
     this.init = function () {
         var domElem = this.createDomElem();
@@ -25,12 +27,24 @@ function Hero(parent) {
     };
 
     this.createDomElem = function () {
-        this.domElem = $('<div>',
-            {
+        this.domElem = $('<div>', {
                 id: 'hero',
                 class: 'stand'
             }
         );
+        var nameDiv = $('<div>', {
+                id: 'heroName',
+                class: 'heroUI',
+                text: this.name
+            }
+        );
+        var hpDiv = $('<div>', {
+                id: 'heroHP',
+                class: 'heroUI',
+                text: this.hitpoints
+            }
+        );
+        this.domElem.prepend(nameDiv, hpDiv);
         return this.domElem;
     };
 
@@ -55,8 +69,6 @@ function Hero(parent) {
     this.moveLeft = function () {
         $('#hero').addClass('left');
         this.heroLeft -= 1;
-        console.log('hero is : ', hero);
-        console.log('hero.style is : ', hero.style);
         hero.style.left = (this.heroLeft * this.speed) + 'px';
     };
 }
@@ -70,14 +82,10 @@ function GameController() {
     };
 
     this.makeHero = function () {
-        // make the hero's dom element
         var hero = new Hero(this);
         this.heroObj = hero;
         var heroDomElem = this.heroObj.init();
-
-        // append the hero's dom element to the game area
         this.gameArea.append(heroDomElem);
-
     };
 
     this.handleKeypress = function (e) {
@@ -111,9 +119,4 @@ function GameController() {
         $(document).keydown(game.handleKeypress);
         $(document).keyup(game.handleKeyup);
     }
-
 }
-
-
-
-
