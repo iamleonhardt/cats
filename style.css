@@ -17,18 +17,18 @@ body {
     width: 48px;
     height: 48px;
     position: absolute;
-    left: 0;
-    top: 0;
 }
 
 .heroUI {
-    display: inline-block;
+    /*display: inline-block;*/
     position: relative;
-    bottom: 14px;
+    bottom: 17px;
 }
 
 #heroName {
     animation: nameColor 2s ease infinite;
+    text-align: center;
+
 }
 
 @keyframes nameColor {
@@ -37,9 +37,12 @@ body {
     100% { color: #ffffff;}
 
 }
-#heroHp {
+#heroHP {
+    visibility: hidden;
 
 }
+
+
 /* white cat */
 
 .stand {
