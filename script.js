@@ -19,6 +19,8 @@ function Hero(parent) {
 
     this.heartbeatInterval = 50;
     this.animationClass = '';
+    this.horizontalMove = 0;
+    this.verticalMove = 0;
     this.heroLeft = 0;
     this.heroTop = 0;
 
@@ -36,7 +38,10 @@ function Hero(parent) {
     };
 
     this.performHeartbeat = function(){
-
+        // every heartbeat move character
+        if(this.heroLeft != 0){
+            this.heroLeft += this.heroLeft;
+        }
     };
 
     this.createDomElem = function () {
@@ -69,7 +74,9 @@ function Hero(parent) {
 
     this.moveRight = function () {
         $('#hero').addClass('right');
-        this.heroLeft++;
+        // this.heroLeft++;
+        this.heroLeft += this.horizontalMove;
+
         hero.style.left = (this.heroLeft * this.speed) + 'px';
     };
 
@@ -82,6 +89,8 @@ function Hero(parent) {
     this.moveLeft = function () {
         $('#hero').addClass('left');
         // this.heroLeft += 1;
+        this.heroLeft += this.horizontalMove;
+
         hero.style.left = (this.heroLeft * this.speed) + 'px';
         console.log('this.heroLeft is : ', this.heroLeft);
     };
@@ -110,25 +119,32 @@ function GameController() {
         console.log(e.which);
 
         switch (e.which) {
-            case this.controlsLeft:
-                self.heroObj.heroLeft = -1;
+            case self.controlsLeft:
+                console.log('yup');
+                self.heroObj.horizontalMove = -1;
                 self.heroObj.animationClass = 'left';
                 self.heroObj.moveLeft();
                 break;
 
-            case this.controlsUp:
-                self.heroObj.heroTop = -1;
+            case self.controlsUp:
+                self.heroObj.verticalMove = -1;
                 self.heroObj.animationClass = 'up';
+                self.heroObj.moveUp();
+
                 break;
 
-            case this.controlsRight:
-                self.heroObj.heroLeft = 1;
+            case self.controlsRight:
+                self.heroObj.horizontalMove = 1;
                 self.heroObj.animationClass = 'right';
+                self.heroObj.moveRight();
+
                 break;
 
-            case this.controlsDown:
-                self.heroObj.heroTop = 1;
+            case self.controlsDown:
+                self.heroObj.verticalMove = 1;
                 self.heroObj.animationClass = 'down';
+                self.heroObj.moveDown();
+
                 break;
         }
     };
