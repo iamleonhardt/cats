@@ -8,7 +8,7 @@ function Hero(parent) {
     this.domElem = null;
     this.name = 'Mushie';
     this.hitpoints = 10;
-    this.speed = 2;
+    this.speed = 5;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
@@ -74,13 +74,28 @@ function Hero(parent) {
 
     this.move = function () {
         this.domElem.addClass(this.animationClass);
-
-        // check bounding box
-        if (this.yPos)
-
-
+        if (this.xPos * this.speed >= 0 && this.xPos * this.speed <= 1392){
+            this.xPos += this.horizontalMove;
+console.log('xpos * spis : ',this.xPos * this.speed);
+            //Make sure he doesnt get stuck on edges
+            if(this.xPos * this.speed < 0){
+                this.xPos = 0;
+            }if(this.xPos * this.speed > 1392){
+                this.xPos = (1392 / this.speed);
+            }
+        }
+        if (this.yPos * this.speed >= 0 && this.yPos * this.speed <= 848){
             this.yPos += this.verticalMove;
-        this.xPos += this.horizontalMove;
+
+            //Make sure he doesnt get stuck on edges
+            if(this.yPos * this.speed < 0){
+                this.yPos = 0;
+            }if(this.yPos * this.speed > 848){
+                this.yPos = (848 / this.speed);
+            }
+
+        }
+        console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
         this.domElem.css({
             top: (this.yPos * this.speed) + 'px',
             left: (this.xPos * this.speed) + 'px'
