@@ -11,6 +11,8 @@ function GameController() {
 
     this.init = function (gameAreaSelector) {
         this.gameArea = $(gameAreaSelector);
+        buildRandomMapArray();
+        drawMap(randomizedMapArr);
         this.makeHero();
     };
 
