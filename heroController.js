@@ -8,7 +8,7 @@ function Hero(parent) {
     this.domElem = null;
     this.name = 'Mushie';
     this.hitpoints = 10;
-    this.speed = 5;
+    this.speed = 3;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
