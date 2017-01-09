@@ -74,7 +74,12 @@ function Hero(parent) {
 
     this.move = function () {
         this.domElem.addClass(this.animationClass);
-        this.yPos += this.verticalMove;
+
+        // check bounding box
+        if (this.yPos)
+
+
+            this.yPos += this.verticalMove;
         this.xPos += this.horizontalMove;
         this.domElem.css({
             top: (this.yPos * this.speed) + 'px',
