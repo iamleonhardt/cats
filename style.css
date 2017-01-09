@@ -61,8 +61,12 @@ body {
 .dirt {
     background-color: tan;
     background: url(images/tileSets/castle.png) -224px -352px;
-
 }
+
+/*.dirt {*/
+    /*background-color: tan;*/
+    /*background: url(images/tileSets/pathsAndObjects.png) -224px -352px;*/
+/*}*/
 
 /* Hero 001 */
 
