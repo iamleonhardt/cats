@@ -54,13 +54,13 @@ body {
 
 .grass {
     background-color: mediumseagreen;
-    background: url(client/images/tileSets/castle.png) 0px -352px;
+    background: url(images/tileSets/castle.png) 0px -352px;
 
 }
 
 .dirt {
     background-color: tan;
-    background: url(client/images/tileSets/castle.png) -224px -352px;
+    background: url(images/tileSets/castle.png) -224px -352px;
 }
 
 /*.dirt {*/
@@ -71,11 +71,11 @@ body {
 /* Hero 001 */
 
 .stand {
-    background: url(client/images/heros/mushy.png) -48px 0px;
+    background: url(images/heros/mushy.png) -48px 0px;
 }
 
 .down {
-    background: url(client/images/heros/mushy.png) 0px 0px;
+    background: url(images/heros/mushy.png) 0px 0px;
     animation: walkDown .4s steps(3) infinite;
 }
 
@@ -84,7 +84,7 @@ body {
 }
 
 .left {
-background: url(client/images/heros/mushy.png) 0px -48px;
+background: url(images/heros/mushy.png) 0px -48px;
 animation: walkLeft .4s steps(3) infinite;
 }
 
@@ -93,7 +93,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .right {
-    background: url(client/images/heros/mushy.png) 0px -96px;
+    background: url(images/heros/mushy.png) 0px -96px;
     animation: walkRight .4s steps(3) infinite;
 }
 
@@ -102,7 +102,7 @@ animation: walkLeft .4s steps(3) infinite;
 }
 
 .up {
-    background: url(client/images/heros/mushy.png) 0px -144px;
+    background: url(images/heros/mushy.png) 0px -144px;
     animation: walkUp .4s steps(3) infinite;
 }
 
