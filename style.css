@@ -44,6 +44,33 @@ body {
 }
 
 
+/* Speech Bubbles */
+.chatBubble {
+    position: relative;
+    bottom: 30px;
+    left: 46px;
+    padding: 5px;
+    color: #000;
+    background: #5dd3f3;
+    border-radius: 10px;
+    background: linear-gradient(#69dbf9, #0fadf3);
+}
+
+/* creates triangle */
+/*.chatBubble:after {*/
+    /*content: "";*/
+    /*display: block; !* reduce the damage in FF3.0 *!*/
+    /*position: absolute;*/
+    /*bottom: -15px;*/
+    /*left: 50px;*/
+    /*width: 0;*/
+    /*border-width: 15px 15px 0;*/
+    /*border-style: solid;*/
+    /*border-color: #f3961c transparent;*/
+/*}*/
+
+
+
 /* Tile Map */
 .tile {
     height: 32px;
@@ -70,45 +97,45 @@ body {
 
 /* Hero 001 */
 
-.stand {
-    background: url(images/heros/mushy.png) -48px 0px;
-}
+/*.stand {*/
+    /*background: url(images/heros/mushy.png) -48px 0px;*/
+/*}*/
 
-.down {
-    background: url(images/heros/mushy.png) 0px 0px;
-    animation: walkDown .4s steps(3) infinite;
-}
+/*.down {*/
+    /*background: url(images/heros/mushy.png) 0px 0px;*/
+    /*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
 
-@keyframes walkDown {
-    100% { background-position: -144px 0px; }
-}
+/*@keyframes walkDown {*/
+    /*100% { background-position: -144px 0px; }*/
+/*}*/
 
-.left {
-background: url(images/heros/mushy.png) 0px -48px;
-animation: walkLeft .4s steps(3) infinite;
-}
+/*.left {*/
+/*background: url(images/heros/mushy.png) 0px -48px;*/
+/*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
 
-@keyframes walkLeft {
-100% { background-position: -144px -48px; }
-}
+/*@keyframes walkLeft {*/
+/*100% { background-position: -144px -48px; }*/
+/*}*/
 
-.right {
-    background: url(images/heros/mushy.png) 0px -96px;
-    animation: walkRight .4s steps(3) infinite;
-}
+/*.right {*/
+    /*background: url(images/heros/mushy.png) 0px -96px;*/
+    /*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
 
-@keyframes walkRight {
-    100% { background-position: -144px -96px; }
-}
+/*@keyframes walkRight {*/
+    /*100% { background-position: -144px -96px; }*/
+/*}*/
 
-.up {
-    background: url(images/heros/mushy.png) 0px -144px;
-    animation: walkUp .4s steps(3) infinite;
-}
+/*.up {*/
+    /*background: url(images/heros/mushy.png) 0px -144px;*/
+    /*animation: walkUp .4s steps(3) infinite;*/
+/*}*/
 
-@keyframes walkUp {
-    100% { background-position: -144px -144px; }
-}
+/*@keyframes walkUp {*/
+    /*100% { background-position: -144px -144px; }*/
+/*}*/
 
 
 
@@ -201,44 +228,44 @@ animation: walkLeft .4s steps(3) infinite;
 
 
 
-/* Spotted Brown Cats */
+ /*Spotted Brown Cats*/
 
-/*.stand {*/
-    /*background: url(mushy.png) -192px -192px;*/
-/*}*/
+.stand {
+    background: url(images/heros/cats.png) -192px -192px;
+}
 
-/*.down {*/
-    /*background: url(mushy.png) -144px -192px;*/
-    /*animation: walkDown .4s steps(3) infinite;*/
-/*}*/
+.down {
+    background: url(images/heros/cats.png) -144px -192px;
+    animation: walkDown .4s steps(3) infinite;
+}
 
-/*@keyframes walkDown {*/
-    /*100% { background-position: -288px -196px; }*/
-/*}*/
+@keyframes walkDown {
+    100% { background-position: -288px -196px; }
+}
 
-/*.left {*/
-    /*background: url(mushy.png) -144px -240px;*/
-    /*animation: walkLeft .4s steps(3) infinite;*/
-/*}*/
+.left {
+    background: url(images/heros/cats.png) -144px -240px;
+    animation: walkLeft .4s steps(3) infinite;
+}
 
-/*@keyframes walkLeft {*/
-    /*100% { background-position: -288px -240px; }*/
-/*}*/
+@keyframes walkLeft {
+    100% { background-position: -288px -240px; }
+}
 
-/*.right {*/
-    /*background: url(mushy.png) -144px -288px;*/
-    /*animation: walkRight .4s steps(3) infinite;*/
-/*}*/
+.right {
+    background: url(images/heros/cats.png) -144px -288px;
+    animation: walkRight .4s steps(3) infinite;
+}
 
-/*@keyframes walkRight {*/
-    /*100% { background-position: -288px -288px; }*/
-/*}*/
+@keyframes walkRight {
+    100% { background-position: -288px -288px; }
+}
 
-/*.up {*/
-    /*background: url(mushy.png) -144px -336px;*/
-    /*animation: walkUp .4s steps(3) infinite;*/
-/*}*/
+.up {
+    background: url(images/heros/cats.png) -144px -336px;
+    animation: walkUp .4s steps(3) infinite;
+}
 
-/*@keyframes walkUp {*/
-    /*100% { background-position: -288px -336px; }*/
-/*}*/
+@keyframes walkUp {
+    100% { background-position: -288px -336px; }
+}

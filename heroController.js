@@ -45,7 +45,11 @@ function Hero(parent) {
                 text: this.hitpoints
             }
         );
-        this.domElem.append(nameDiv, hpDiv);
+        var chatBubble = $('<div>', {
+            class: 'chatBubble',
+            text: 'Hello!'
+        })
+        this.domElem.append(nameDiv, hpDiv, chatBubble);
         return this.domElem;
     };
 
@@ -76,7 +80,7 @@ function Hero(parent) {
         this.domElem.addClass(this.animationClass);
         if (this.xPos * this.speed >= 0 && this.xPos * this.speed <= 1392){
             this.xPos += this.horizontalMove;
-console.log('xpos * spis : ',this.xPos * this.speed);
+
             //Make sure he doesnt get stuck on edges
             if(this.xPos * this.speed < 0){
                 this.xPos = 0;
@@ -93,9 +97,8 @@ console.log('xpos * spis : ',this.xPos * this.speed);
             }if(this.yPos * this.speed > 848){
                 this.yPos = (848 / this.speed);
             }
-
         }
-        console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
+        // console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
         this.domElem.css({
             top: (this.yPos * this.speed) + 'px',
             left: (this.xPos * this.speed) + 'px'
