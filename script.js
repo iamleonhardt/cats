@@ -7,7 +7,11 @@ var game;
 $(document).ready(function () {
     game = new GameController();
     game.init('#gameArea');
-    // $('#loginBtn').click(signIn);
+    $('#loginBtn').click(logIn);
+    $('#signUpBtn').click(signUp);
+    $('#logoutBtn').click(logOut);
+
+
     game.addEventHandlers();
 });
 
@@ -22,20 +26,74 @@ var config = {
 firebase.initializeApp(config);
 
 var auth = firebase.auth();
+var database = firebase.database();
 
-// Store elements
-var loginBtn = $('#loginBtn');
-var createAcctBtn = $('#createAcctBtn');
-var emailInput = $('#emailInput');
-var passInput = $('#passInput');
 
-// Add login event
-loginBtn.click(function(){
+
+function logIn (){
+    console.log('login clicked');
     // Get email and Password
-    var email = emailInput.val();
-    var pass = passInput.val();
+    var email = $('#emailInput').val();
+    var pass = $('#passInput').val();
     // Sign In
-    auth.signInWithEmailAndPassword(email, password);
+    var promise = auth.signInWithEmailAndPassword(email, pass);
+    promise.catch(function(data){
+        console.log(data.message)
+    })
+}
+
+function signUp (){
+    console.log('signUp clicked');
+    // Get email and Password
+    var name = $('#nameInput').val();
+    var email = $('#emailInput').val();
+    var pass = $('#passInput').val();
+
+
+
+    // Sign Up
+    var promise = auth.createUserWithEmailAndPassword(email, pass);
+    promise
+        .then(function(){
+            var uid = auth.currentUser.uid;
+            var userRef = database.ref().child('users').child(uid);
+            var values = {'username': name, 'email': email};
+            userRef.update(values);
+        })
+        .catch(function(data){
+        console.log('catch data : ', data.message)
+    })
+}
+
+function logOut (){
+    firebase.auth().signOut();
+}
+
+firebase.auth().onAuthStateChanged(function(firebaseUser){
+    // User is logged in
+    if(firebaseUser){
+        console.log('firebaseUser is : ', firebaseUser);
+        var uid = auth.currentUser.uid;
+        var userRef =  firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
+            var username = snapshot.val().username;
+            $('#userNameHUD').text(username);
+            game.makeHero(username);
+
+        });
+
+
+        $('#logoutBtn').removeClass('hide');
+        $('#loginUI').addClass('hide');
+
+        $('#heroHUDContainer').removeClass('hide');
+
+        // User is logged out
+    } else {
+        console.log('User not logged in');
+        $('#logoutBtn').addClass('hide');
+        $('#heroHUDContainer').addClass('hide');
+
+    }
 });
 
 //

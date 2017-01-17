@@ -15,6 +15,7 @@ function GameController() {
         drawMap(randomizedMapArr);
         // this.createLoginBtn();
         this.createLoginElems();
+        this.createHeroHUD();
         // this.makeHero();
     };
 
@@ -23,30 +24,38 @@ function GameController() {
             id: 'loginUI'
 
         });
+        var nameInput = $('<input>', {
+            id: 'nameInput',
+            placeholder: 'Username'
+        });
         var emailInput = $('<input>', {
             id: 'emailInput',
-            placeholder: 'enter email'
+            placeholder: 'Email'
         });
         var passInput = $('<input>', {
             id: 'passInput',
-            placeholder: 'enter password'
+            placeholder: 'Password'
 
         });
         var loginBtn = $('<div>', {
             id: 'loginBtn',
-            text: 'login',
+            text: 'Log in',
             class: 'loginBtn'
         });
         var createAcctBtn = $('<div>', {
-            id: 'createAcctBtn',
+            id: 'signUpBtn',
             text: 'Create Account',
             class: 'loginBtn'
+        });
+        var logoutBtn = $('<div>', {
+            id: 'logoutBtn',
+            text: 'Log out',
+            class: 'loginBtn hide'
         })
 
-
-        this.domElem.append(emailInput, passInput, loginBtn, createAcctBtn);
+        this.domElem.append(nameInput, emailInput, passInput, loginBtn, createAcctBtn, logoutBtn);
         $('#gameArea').append(this.domElem);
-    }
+    };
 
     // this.createLoginBtn = function(){
     //     var googleLoginBtn = $('<div>', {
@@ -56,15 +65,43 @@ function GameController() {
     //     $('#gameArea').append(loginBtn);
     // }
 
-    this.makeHero = function () {
-        var hero = new Hero(this);
+    this.makeHero = function (name) {
+        var hero = new Hero(this, name);
         this.heroObj = hero;
         var heroDomElem = this.heroObj.init();
         this.gameArea.append(heroDomElem);
     };
 
-    this.handleKeypress = function (e) {
+    this.createHeroHUD = function(){
+        this.domElem = $('<div>', {
+            id: 'heroHUDContainer',
+            class: 'hide'
+        });
+        var userNameHUD = $('<div>', {
+            id: 'userNameHUD',
+            text: '',
+            class: 'heroHUD'
+        });
+        var heroHpHUD = $('<div>', {
+            id: 'heroHpHUD',
+            text: '10 hp',
+            // class: 'heroHUD'
+        });
+        var heroLvlHUD = $('<div>', {
+            id: 'heroLvlHUD',
+            text: 'Level: 1',
+            class: 'heroHUD'
+        });
+        // var hpBar = $('<div>', {
+        //     id: 'hpBar'
+        // });
 
+        this.domElem.append(userNameHUD, heroHpHUD, heroLvlHUD);
+        $('#gameArea').append(this.domElem);
+    };
+
+    this.handleKeypress = function (e) {
+    console.log('e is : ', e.which);
         switch (e.which) {
             case self.controlsLeft:
                 self.heroObj.horizontalMove = -1;
@@ -85,6 +122,13 @@ function GameController() {
                 self.heroObj.verticalMove = 1;
                 self.heroObj.animationClass = 'down';
                 break;
+
+            case 27:
+                $('#loginUI').toggleClass('hide');
+
+            case 65:
+                game.heroObj.shield();
+
         }
     };
 
