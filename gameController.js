@@ -13,8 +13,48 @@ function GameController() {
         this.gameArea = $(gameAreaSelector);
         buildRandomMapArray();
         drawMap(randomizedMapArr);
-        this.makeHero();
+        // this.createLoginBtn();
+        this.createLoginElems();
+        // this.makeHero();
     };
+
+    this.createLoginElems = function(){
+        this.domElem = $('<div>', {
+            id: 'loginUI'
+
+        });
+        var emailInput = $('<input>', {
+            id: 'emailInput',
+            placeholder: 'enter email'
+        });
+        var passInput = $('<input>', {
+            id: 'passInput',
+            placeholder: 'enter password'
+
+        });
+        var loginBtn = $('<div>', {
+            id: 'loginBtn',
+            text: 'login',
+            class: 'loginBtn'
+        });
+        var createAcctBtn = $('<div>', {
+            id: 'createAcctBtn',
+            text: 'Create Account',
+            class: 'loginBtn'
+        })
+
+
+        this.domElem.append(emailInput, passInput, loginBtn, createAcctBtn);
+        $('#gameArea').append(this.domElem);
+    }
+
+    // this.createLoginBtn = function(){
+    //     var googleLoginBtn = $('<div>', {
+    //         id: 'loginBtn',
+    //         text: 'login'
+    //     });
+    //     $('#gameArea').append(loginBtn);
+    // }
 
     this.makeHero = function () {
         var hero = new Hero(this);
