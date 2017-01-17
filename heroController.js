@@ -2,11 +2,11 @@
  * Created by bill on 1/8/17.
  */
 
-function Hero(parent) {
+function Hero(parent,name) {
     var self = this;
     this.parent = parent;
     this.domElem = null;
-    this.name = 'Mushie';
+    this.name = name;
     this.hitpoints = 10;
     this.speed = 5;
 
@@ -33,19 +33,24 @@ function Hero(parent) {
                 }
             }
         );
+        var heroUI = $('<div>', {
+                id: 'heroUI',
+            }
+        );
         var nameDiv = $('<div>', {
                 id: 'heroName',
                 class: 'heroUI',
                 text: this.name
             }
         );
-        var hpDiv = $('<div>', {
-                id: 'heroHP',
-                class: 'heroUI',
-                text: this.hitpoints
-            }
-        );
-        this.domElem.append(nameDiv, hpDiv);
+        // var hpDiv = $('<div>', {
+        //         id: 'heroHP',
+        //         class: 'heroUI',
+        //         // text: this.hitpoints
+        //     }
+        // );
+        $(heroUI).append(nameDiv);
+        this.domElem.append(heroUI);
         return this.domElem;
     };
 
@@ -76,7 +81,7 @@ function Hero(parent) {
         this.domElem.addClass(this.animationClass);
         if (this.xPos * this.speed >= 0 && this.xPos * this.speed <= 1392){
             this.xPos += this.horizontalMove;
-console.log('xpos * spis : ',this.xPos * this.speed);
+            // console.log('xpos * spis : ',this.xPos * this.speed);
             //Make sure he doesnt get stuck on edges
             if(this.xPos * this.speed < 0){
                 this.xPos = 0;
@@ -95,10 +100,31 @@ console.log('xpos * spis : ',this.xPos * this.speed);
             }
 
         }
-        console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
+        // console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
         this.domElem.css({
             top: (this.yPos * this.speed) + 'px',
             left: (this.xPos * this.speed) + 'px'
         });
+    };
+
+    // SKILLS
+    this.shieldReady = true;
+    this.shieldCooldown = 10000;
+
+    this.shield = function(){
+        if (this.shieldReady){
+            this.shieldElem = $('<div>', {
+                id: 'shieldElem'
+            });
+            this.domElem.append(this.shieldElem);
+            this.shieldReady = false;
+            setTimeout(function(){
+                $('#shieldElem').remove();
+            }, 3000);
+            setTimeout(function(){
+                self.shieldReady = true;
+            }, this.shieldCooldown)
+        }
+
     };
 }
