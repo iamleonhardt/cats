@@ -22,7 +22,6 @@ var ranTileNum = 0;
         var tempArr = [];
         randomizedMapArr.push(tempArr);
 
-
         for (var j = 0; j < mapWidth; j++) {
             var ranNum = getRanNum(0, 50);
             if(ranNum < 1){
@@ -30,9 +29,6 @@ var ranTileNum = 0;
             }else {
                 ranTileNum = 0;
             }
-            // console.log('ranomdizedMapArr is : ', randomizedMapArr);
-            // console.log('i is : ', i + ' and j is : ', j);
-            // console.log('randTileNum is : ', ranTileNum);
             randomizedMapArr[i][j] = ranTileNum;
 
         }
