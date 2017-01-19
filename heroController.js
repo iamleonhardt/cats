@@ -6,6 +6,7 @@ function Hero(parent,name) {
     var self = this;
     this.parent = parent;
     this.domElem = null;
+    this.heroSprite = 'hero1 ';
     this.name = name;
     this.hitpoints = 10;
     this.speed = 5;
@@ -26,7 +27,7 @@ function Hero(parent,name) {
     this.createDomElem = function () {
         this.domElem = $('<div>', {
                 id: 'hero',
-                class: 'stand',
+                class: this.heroSprite + 'stand',
                 css: {
                     top: '0px',
                     left: '0px'
@@ -34,7 +35,7 @@ function Hero(parent,name) {
             }
         );
         var heroUI = $('<div>', {
-                id: 'heroUI',
+                id: 'heroUI'
             }
         );
         var nameDiv = $('<div>', {
@@ -72,13 +73,13 @@ function Hero(parent,name) {
     };
 
     this.standStill = function(){
-        self.domElem.removeClass();
-        self.domElem.addClass('stand');
-        self.animationClass = 'stand';
+        // self.domElem.removeClass();
+        self.domElem.attr('class', this.heroSprite + 'stand');
+        this.animationClass = this.heroSprite + 'stand';
     };
 
     this.move = function () {
-        this.domElem.addClass(this.animationClass);
+        this.domElem.attr('class', this.heroSprite + this.animationClass);
         if (this.xPos * this.speed >= 0 && this.xPos * this.speed <= 1392){
             this.xPos += this.horizontalMove;
             // console.log('xpos * spis : ',this.xPos * this.speed);

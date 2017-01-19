@@ -34,7 +34,8 @@ function GameController() {
         });
         var passInput = $('<input>', {
             id: 'passInput',
-            placeholder: 'Password'
+            placeholder: 'Password',
+            type: 'password'
 
         });
         var loginBtn = $('<div>', {
