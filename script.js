@@ -38,12 +38,12 @@ function logIn (){
     // Sign In
     var promise = auth.signInWithEmailAndPassword(email, pass);
     promise.catch(function(data){
-        console.log(data.message)
+        // console.log(data.message)
     })
 }
 
 function signUp (){
-    console.log('signUp clicked');
+    // console.log('signUp clicked');
     // Get email and Password
     var name = $('#nameInput').val();
     var email = $('#emailInput').val();
@@ -72,7 +72,7 @@ function logOut (){
 firebase.auth().onAuthStateChanged(function(firebaseUser){
     // User is logged in
     if(firebaseUser){
-        console.log('firebaseUser is : ', firebaseUser);
+        // console.log('firebaseUser is : ', firebaseUser);
         var uid = auth.currentUser.uid;
         var userRef =  firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
             var username = snapshot.val().username;
