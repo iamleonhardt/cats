@@ -9,14 +9,16 @@ function Hero(parent,name) {
     this.heroSprite = 'hero1 ';
     this.name = name;
     this.hitpoints = 10;
-    this.speed = 5;
+    this.speed = 2;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
-    this.horizontalMove = 0;
-    this.verticalMove = 0;
-    this.xPos = 0;
-    this.yPos = 0;
+    this.horizontalTraj = 0;
+    this.verticalTraj = 0;
+    this.width = 48;
+    this.height = 48;
+    this.xPos = 200 - this.width/2;
+    this.yPos = 200 - this.height/2;
 
     this.init = function () {
         var domElem = this.createDomElem();
@@ -29,8 +31,10 @@ function Hero(parent,name) {
                 id: 'hero',
                 class: this.heroSprite + 'stand',
                 css: {
-                    top: '0px',
-                    left: '0px'
+                    top: self.yPos,
+                    left: self.xPos,
+                    width: this.width + 'px',
+                    height: this.height + 'px'
                 }
             }
         );
@@ -44,12 +48,7 @@ function Hero(parent,name) {
                 text: this.name
             }
         );
-        // var hpDiv = $('<div>', {
-        //         id: 'heroHP',
-        //         class: 'heroUI',
-        //         // text: this.hitpoints
-        //     }
-        // );
+
         $(heroUI).append(nameDiv);
         this.domElem.append(heroUI);
         return this.domElem;
@@ -65,7 +64,7 @@ function Hero(parent,name) {
 
     this.performHeartbeat = function () {
         // Stand still if no keys pressed
-        if (self.horizontalMove == 0 && self.verticalMove == 0) {
+        if (self.horizontalTraj == 0 && self.verticalTraj == 0) {
             self.standStill();
         } else {
             self.move();
@@ -80,38 +79,47 @@ function Hero(parent,name) {
 
     this.move = function () {
         this.domElem.attr('class', this.heroSprite + this.animationClass);
-        if (this.xPos * this.speed >= 0 && this.xPos * this.speed <= 1392){
-            this.xPos += this.horizontalMove;
-            // console.log('xpos * spis : ',this.xPos * this.speed);
-            //Make sure he doesnt get stuck on edges
-            if(this.xPos * this.speed < 0){
-                this.xPos = 0;
-            }if(this.xPos * this.speed > 1392){
-                this.xPos = (1392 / this.speed);
-            }
-        }
-        if (this.yPos * this.speed >= 0 && this.yPos * this.speed <= 848){
-            this.yPos += this.verticalMove;
+        if (this.xPos >= 0 && this.xPos  <= 1392){
+            this.xPos += this.horizontalTraj * this.speed;
 
             //Make sure he doesnt get stuck on edges
-            if(this.yPos * this.speed < 0){
+            if(this.xPos < 0){
+                this.xPos = 0;
+            }if(this.xPos > 1392){
+                this.xPos = (1392);
+            }
+        }
+        if (this.yPos >= 0 && this.yPos  <= 848){
+            this.yPos += this.verticalTraj * this.speed;
+
+            //Make sure he doesnt get stuck on edges
+            if(this.yPos < 0){
                 this.yPos = 0;
-            }if(this.yPos * this.speed > 848){
-                this.yPos = (848 / this.speed);
+            }if(this.yPos > 848){
+                this.yPos = (848);
             }
 
         }
         // console.log('x is : ', this.xPos + ' and y is : ', this.yPos);
         this.domElem.css({
-            top: (this.yPos * this.speed) + 'px',
-            left: (this.xPos * this.speed) + 'px'
+            top: (this.yPos) + 'px',
+            left: (this.xPos) + 'px'
         });
     };
 
+
     // SKILLS
+    // Throw Skill
+    this.throw = function(){
+        var throwSound = new Audio('sounds/throw.mp3');
+        throwSound.play();
+        console.log(this.name + ' throws a rock.');
+        game.makeWeapon('rock');
+    };
+
+    // Shield Skill
     this.shieldReady = true;
     this.shieldCooldown = 10000;
-
     this.shield = function(){
         if (this.shieldReady){
             this.shieldElem = $('<div>', {
