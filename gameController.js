@@ -73,6 +73,13 @@ function GameController() {
         this.gameArea.append(heroDomElem);
     };
 
+    this.makeRock = function(name){
+        var weapon = new Weapon(this, name);
+        this.weaponObj = weapon;
+        var weaponDomElem = this.weaponObj.init();
+        this.gameArea.append(weaponDomElem);
+    }
+
     this.createHeroHUD = function(){
         this.domElem = $('<div>', {
             id: 'heroHUDContainer',
@@ -101,6 +108,27 @@ function GameController() {
         $('#gameArea').append(this.domElem);
     };
 
+    this.handleMouseClicks = function(e){
+        switch(e.button){
+            case 0:
+                console.log('left mouse clicked');
+                this.cursorX = e.clientX;
+                this.cursorY = e.clientY;
+                console.log('cursorX is : ', this.cursorX + ' and cursorY is : ', this.cursorY);
+                game.makeRock();
+
+                break;
+            case 2:
+                console.log('right mouse clicked');
+                this.cursorX = e.clientX;
+                this.cursorY = e.clientY;
+                console.log('cursorX is : ', this.cursorX + ' and cursorY is : ', this.cursorY);
+                game.makeRock();
+
+                break;
+        }
+    }
+
     this.handleKeypress = function (e) {
     console.log('e is : ', e.which);
         switch (e.which) {
@@ -126,9 +154,14 @@ function GameController() {
 
             case 27:
                 $('#loginUI').toggleClass('hide');
+                break;
 
             case 65:
                 game.heroObj.shield();
+                break;
+
+            case 32:
+                break;
 
         }
     };
@@ -157,5 +190,9 @@ function GameController() {
     this.addEventHandlers = function () {
         $(document).keydown(game.handleKeypress);
         $(document).keyup(game.handleKeyup);
+        $(document).contextmenu(function(){
+            return false;
+        })
+        $(document).mousedown(game.handleMouseClicks);
     }
 }

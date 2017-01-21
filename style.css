@@ -121,6 +121,15 @@ input {
     border-radius: 4px;
 }
 
+.rock {
+    height: 17px;
+    width: 17px;
+    border-radius: 50%;
+    background-color: #00e3bb;
+    background: url(images/tileSets/castle.png) -40px -204px;
+    position: absolute;
+}
+
 /* Hero HUD */
 #heroHUDContainer {
     width: 240px;

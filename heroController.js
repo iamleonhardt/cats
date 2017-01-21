@@ -108,10 +108,16 @@ function Hero(parent,name) {
         });
     };
 
+
     // SKILLS
+    // Throw Skill
+    this.throw = function(){
+
+    }
+
+    // Shield Skill
     this.shieldReady = true;
     this.shieldCooldown = 10000;
-
     this.shield = function(){
         if (this.shieldReady){
             this.shieldElem = $('<div>', {
