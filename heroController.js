@@ -20,6 +20,18 @@ function Hero(parent,name) {
     this.xPos = 200 - this.width/2;
     this.yPos = 200 - this.height/2;
 
+    this.hasRock = false;
+
+    this.throwReady = true;
+    this.throwCooldown = 1000;
+
+    this.quickThrowReady = true;
+    this.quickThrowCooldown = 4000;
+
+    this.shieldReady = true;
+    this.shieldCooldown = 10000;
+
+
     this.init = function () {
         var domElem = this.createDomElem();
         this.startHeartbeat();
@@ -109,17 +121,50 @@ function Hero(parent,name) {
 
 
     // SKILLS
+
+    // Get Rock
+    this.getRock = function(){
+        console.log(this.name + ' picks up a rock');
+        this.hasRock = true;
+    };
+
     // Throw Skill
     this.throw = function(){
-        var throwSound = new Audio('sounds/throw.mp3');
-        throwSound.play();
-        console.log(this.name + ' throws a rock.');
-        game.makeWeapon('rock');
+        // console.log('throwReady is : ', this.throwReady, ' and hasRock is : ', this.hasRock);
+
+        if (this.throwReady && this.hasRock){
+            var throwSound = new Audio('sounds/throw.mp3');
+            throwSound.play();
+            console.log(this.name + ' throws a rock.');
+            game.makeWeapon('rock');
+            this.hasRock = false;
+            this.throwReady = false;
+            setTimeout(function(){
+                self.throwReady = true;
+            }, 2000);
+        } else if (this.hasRock == false){
+            console.log('I need a rock');
+        }
+
+    };
+
+    // Quick Throw Skill
+    this.quickThrow = function (){
+        if (this.quickThrowReady){
+            var throwSound = new Audio('sounds/throw.mp3');
+            throwSound.play();
+            console.log(this.name + ' Quickly throws a rock.');
+            game.makeWeapon('rock');
+
+            this.quickThrowReady = false;
+
+            setTimeout(function(){
+                self.quickThrowReady = true;
+            }, this.quickThrowCooldown);
+        }
     };
 
     // Shield Skill
-    this.shieldReady = true;
-    this.shieldCooldown = 10000;
     this.shield = function(){
         if (this.shieldReady){
             this.shieldElem = $('<div>', {

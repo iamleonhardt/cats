@@ -47,10 +47,6 @@ function Weapon(parent, name){
         this.velocityY = this.normalizedY * this.speed;
         // console.log('Velocity  x and y are : ', this.velocityX, this.velocityY);
 
-
-        console.log('Finding a rock');
-        // console.log('rock length is : ', self.len);
-        // console.log('xTraj : ', self.xTraj, 'yTraj : ', self.yTraj)
         this.rockElem = $('<div>', {
             class: 'rock',
             css: {
@@ -66,6 +62,11 @@ function Weapon(parent, name){
     this.move = function(){
         this.xPos += this.velocityX;
         this.yPos += this.velocityY;
+
+        if (this.xPos < 0 || this.xPos > 1392 || this.yPos < 0 || this.yPos > 848){
+            this.remove();
+            console.log('removing rock');
+        }
 
         this.rockElem.css({
             left: this.xPos + 'px',

@@ -118,7 +118,7 @@ function GameController() {
                 self.cursorY = e.clientY;
                 // console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
                 // game.makeRock();
-                game.heroObj.throw();
+                game.heroObj.quickThrow();
                 break;
         }
     };
@@ -126,35 +126,36 @@ function GameController() {
     this.handleKeypress = function (e) {
     // console.log('e is : ', e.which);
         switch (e.which) {
-            case self.controlsLeft:
+            case self.controlsLeft: // move
                 self.heroObj.horizontalTraj = -1;
                 self.heroObj.animationClass = 'left';
                 break;
 
-            case self.controlsUp:
+            case self.controlsUp: // move
                 self.heroObj.verticalTraj = -1;
                 self.heroObj.animationClass = 'up';
                 break;
 
-            case self.controlsRight:
+            case self.controlsRight: // move
                 self.heroObj.horizontalTraj = 1;
                 self.heroObj.animationClass = 'right';
                 break;
 
-            case self.controlsDown:
+            case self.controlsDown: //move
                 self.heroObj.verticalTraj = 1;
                 self.heroObj.animationClass = 'down';
                 break;
 
-            case 27:
+            case 27: // toggle Login
                 $('#loginUI').toggleClass('hide');
                 break;
 
-            case 65:
+            case 65: // shield
                 game.heroObj.shield();
                 break;
 
-            case 32:
+            case 71: // get rock
+                game.heroObj.getRock();
                 break;
         }
     };
