@@ -17,8 +17,8 @@ function Hero(parent,name) {
     this.verticalTraj = 0;
     this.width = 48;
     this.height = 48;
-    this.xPos = 200 - this.width/2;
-    this.yPos = 200 - this.height/2;
+    this.xPos = 710 - this.width/2;
+    this.yPos = 450 - this.height/2;
 
     this.hasRock = false;
 
@@ -136,12 +136,12 @@ function Hero(parent,name) {
             var throwSound = new Audio('sounds/throw.mp3');
             throwSound.play();
             console.log(this.name + ' throws a rock.');
-            game.makeWeapon('rock');
+            game.makeWeapon('rock', 'throw');
             this.hasRock = false;
             this.throwReady = false;
             setTimeout(function(){
                 self.throwReady = true;
-            }, 2000);
+            }, 1000);
         } else if (this.hasRock == false){
             console.log('I need a rock');
         }
@@ -154,7 +154,7 @@ function Hero(parent,name) {
             var throwSound = new Audio('sounds/throw.mp3');
             throwSound.play();
             console.log(this.name + ' Quickly throws a rock.');
-            game.makeWeapon('rock');
+            game.makeWeapon('rock', 'quickThrow');
 
             this.quickThrowReady = false;
 

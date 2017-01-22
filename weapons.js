@@ -3,20 +3,29 @@
  */
 
 
-function Weapon(parent, name){
+function Weapon(parent, name, type){
     var self = this;
     this.parent = parent;
+    this.rockElem = null;
     this.name = name;
+    this.type = type;
     this.xPos = game.heroObj.xPos + game.heroObj.width/2;
     this.yPos = game.heroObj.yPos + game.heroObj.height/2;
     this.size = 12;
     this.speed = 3;
+    this.startPoint = {x: 0, y: 0};
+    this.throwDistance = 100;
+    this.bulletLife = 1100;
 
 
     this.init = function () {
-        var rockElem = this.createRockElem();
+        this.rockElem = this.createRockElem();
         this.startHeartbeat();
-        return rockElem;
+        setTimeout(function(){
+            self.die();
+        }, self.bulletLife);
+        return this.rockElem;
+
     };
 
     this.startHeartbeat = function () {
@@ -59,12 +68,17 @@ function Weapon(parent, name){
         return this.rockElem;
     };
 
+    this.die = function(){
+        $(this.rockElem).remove();
+        this.stopHeartbeat();
+    };
+
     this.move = function(){
         this.xPos += this.velocityX;
         this.yPos += this.velocityY;
 
-        if (this.xPos < 0 || this.xPos > 1392 || this.yPos < 0 || this.yPos > 848){
-            this.remove();
+        if (this.xPos < 0 || this.xPos > 1440 || this.yPos < 0 || this.yPos > 896){
+            this.die();
             console.log('removing rock');
         }
 
