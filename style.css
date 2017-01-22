@@ -27,6 +27,22 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 1000;
+    color: black;
+}
+
+#signUpUI {
+    width: 210px;
+    /*height: 200px;*/
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: black;
 }
 
 .loginBtn {
@@ -68,17 +84,20 @@ input {
     display: none;
 }
 
-/*#googleLoginBtn {*/
-/*height: 80px;*/
-/*width: 200px;*/
-/*line-height: 80px;*/
-/*text-align: center;*/
-/*background-color: #4cbd18;*/
-/*position: absolute;*/
-/*left: 50%;*/
-/*top: 50%;*/
-/*transform:translate(-50%, -50%);*/
-/*}*/
+#settingsUI {
+    width: 210px;
+    /*height: 200px;*/
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: black;
+}
 
 /* Hero UI */
 #hero {
@@ -130,6 +149,7 @@ input {
 /* Speech Bubbles */
 .chatBubble {
     position: absolute;
+    width: auto;
     top: 14px;
     left: 48px;
     padding: 3px 5px;
@@ -137,7 +157,6 @@ input {
     background: #5dd3f3;
     border-radius: 10px;
     background: linear-gradient(#6ccfd0, #187fc1);
-
 }
 
 .rock {

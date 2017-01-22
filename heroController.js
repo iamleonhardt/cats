@@ -65,7 +65,6 @@ function Hero(parent, name) {
             class: 'chatBubble hide',
             text: 'Hello!'
         });
-        // this.domElem.append(nameDiv, chatBubble);
 
         $(heroUI).append(nameDiv, chatBubble);
         this.domElem.append(heroUI);
@@ -147,7 +146,6 @@ function Hero(parent, name) {
         }, 1500);
     };
 
-
     // Get Rock
     this.getRock = function () {
         console.log(this.name + ' picks up a rock');
@@ -156,6 +154,8 @@ function Hero(parent, name) {
 
     // Throw Skill
     this.throw = function () {
+        var chatBub = $('.chatBubble');
+
         // console.log('throwReady is : ', this.throwReady, ' and hasRock is : ', this.hasRock);
 
         if (this.throwReady && this.hasRock) {
@@ -169,9 +169,13 @@ function Hero(parent, name) {
                 self.throwReady = true;
             }, 1000);
         } else if (this.hasRock == false) {
-            console.log('I need a rock');
-        }
+            chatBub.toggleClass('hide');
+            chatBub.text('I need a rock..');
+            setTimeout(function(){
+                chatBub.toggleClass('hide');
+            }, 1500);
 
+        }
     };
 
     // Quick Throw Skill
