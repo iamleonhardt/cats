@@ -10,6 +10,7 @@ function Hero(parent, name) {
     this.name = name;
     this.hitpoints = 10;
     this.speed = 2;
+    this.immune = false;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
@@ -192,6 +193,7 @@ function Hero(parent, name) {
     // Shield Skill
     this.shield = function () {
         if (this.shieldReady) {
+            self.immune = true;
             this.shieldElem = $('<div>', {
                 id: 'shieldElem'
             });
@@ -199,6 +201,7 @@ function Hero(parent, name) {
             this.shieldReady = false;
             setTimeout(function () {
                 $('#shieldElem').remove();
+                self.immune = false;
             }, 3000);
             setTimeout(function () {
                 self.shieldReady = true;
