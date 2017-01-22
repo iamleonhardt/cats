@@ -20,7 +20,7 @@ function GameController() {
         this.createHeroHUD();
     };
 
-    this.createLoginElems = function(){
+    this.createLoginElems = function () {
         this.domElem = $('<div>', {
             id: 'loginUI'
         });
@@ -71,14 +71,14 @@ function GameController() {
         this.gameArea.append(heroDomElem);
     };
 
-    this.makeWeapon = function(name){
-        var weapon = new Weapon(this, name);
+    this.makeWeapon = function (name, type) {
+        var weapon = new Weapon(this, name, type);
         this.weaponObj = weapon;
         var weaponDomElem = this.weaponObj.init();
         this.gameArea.append(weaponDomElem);
     };
 
-    this.createHeroHUD = function(){
+    this.createHeroHUD = function () {
         this.domElem = $('<div>', {
             id: 'heroHUDContainer',
             class: 'hide'
@@ -101,13 +101,13 @@ function GameController() {
         $('#gameArea').append(this.domElem);
     };
 
-    this.handleMouseClicks = function(e){
-        switch(e.button){
+    this.handleMouseClicks = function (e) {
+        switch (e.button) {
             case 0:
                 // console.log('left mouse clicked');
                 self.cursorX = e.clientX;
                 self.cursorY = e.clientY;
-                // console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
+                console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
                 // game.makeRock();
                 game.heroObj.throw();
 
@@ -118,43 +118,44 @@ function GameController() {
                 self.cursorY = e.clientY;
                 // console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
                 // game.makeRock();
-                game.heroObj.throw();
+                game.heroObj.quickThrow();
                 break;
         }
     };
 
     this.handleKeypress = function (e) {
-    // console.log('e is : ', e.which);
+        // console.log('e is : ', e.which);
         switch (e.which) {
-            case self.controlsLeft:
+            case self.controlsLeft: // move
                 self.heroObj.horizontalTraj = -1;
                 self.heroObj.animationClass = 'left';
                 break;
 
-            case self.controlsUp:
+            case self.controlsUp: // move
                 self.heroObj.verticalTraj = -1;
                 self.heroObj.animationClass = 'up';
                 break;
 
-            case self.controlsRight:
+            case self.controlsRight: // move
                 self.heroObj.horizontalTraj = 1;
                 self.heroObj.animationClass = 'right';
                 break;
 
-            case self.controlsDown:
+            case self.controlsDown: //move
                 self.heroObj.verticalTraj = 1;
                 self.heroObj.animationClass = 'down';
                 break;
 
-            case 27:
+            case 27: // toggle Login
                 $('#loginUI').toggleClass('hide');
                 break;
 
-            case 65:
+            case 65: // shield
                 game.heroObj.shield();
                 break;
 
-            case 32:
+            case 71: // get rock
+                game.heroObj.getRock();
                 break;
         }
     };
@@ -182,7 +183,7 @@ function GameController() {
     this.addEventHandlers = function () {
         $(document).keydown(game.handleKeypress);
         $(document).keyup(game.handleKeyup);
-        $(document).contextmenu(function(){
+        $(document).contextmenu(function () {
             return false;
         });
         $(document).mousedown(game.handleMouseClicks);
