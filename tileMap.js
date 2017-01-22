@@ -23,8 +23,10 @@ var ranTileNum = 0;
         randomizedMapArr.push(tempArr);
 
         for (var j = 0; j < mapWidth; j++) {
-            var ranNum = getRanNum(0, 50);
+            var ranNum = getRanNum(0, 100);
             if(ranNum < 1){
+                ranTileNum = 2;
+            }else if (ranNum > 0 && ranNum < 5) {
                 ranTileNum = 1;
             }else {
                 ranTileNum = 0;
@@ -87,6 +89,14 @@ function drawMap(mapArr) {
                     class: 'tile dirt'
                 });
                 $('#gameArea').append(dirtDiv);
+            }
+
+            //Make Water Tile
+            if (parseInt(mapArr[i][j]) == 2) {
+                var waterDiv = $('<div>', {
+                    class: 'tile water'
+                });
+                $('#gameArea').append(waterDiv);
             }
         }
     }

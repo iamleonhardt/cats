@@ -9,7 +9,7 @@ function Hero(parent, name) {
     this.heroSprite = 'hero1 ';
     this.name = name;
     this.hitpoints = 10;
-    this.speed = 4;
+    this.speed = 2;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
@@ -61,10 +61,10 @@ function Hero(parent, name) {
             }
         );
         var chatBubble = $('<div>', {
-            class: 'chatBubble',
+            class: 'chatBubble hide',
             text: 'Hello!'
         });
-        // this.domElem.append(nameDiv, hpDiv);
+        // this.domElem.append(nameDiv, chatBubble);
 
         $(heroUI).append(nameDiv, chatBubble);
         this.domElem.append(heroUI);
@@ -134,10 +134,16 @@ function Hero(parent, name) {
 
     // Emote
     this.ranEmote = function(){
+        var chatBub = $('.chatBubble');
         this.emoteArr = ['Wow!', 'Much excite!', 'Incredible!', 'Savage!', 'So good!', 'Wrecked'];
         var ranNum = this.getRanNum(0, this.emoteArr.length-1);
         var ranEmote = this.emoteArr[ranNum];
         console.log('ranEmote is : ', ranEmote);
+        chatBub.toggleClass('hide');
+        chatBub.text(ranEmote);
+        setTimeout(function(){
+            chatBub.toggleClass('hide');
+        }, 1500);
     };
 
 

@@ -129,7 +129,7 @@ input {
 
 /* Speech Bubbles */
 .chatBubble {
-    position: relative;
+    position: absolute;
     top: 14px;
     left: 48px;
     padding: 3px 5px;
@@ -137,6 +137,7 @@ input {
     background: #5dd3f3;
     border-radius: 10px;
     background: linear-gradient(#6ccfd0, #187fc1);
+
 }
 
 .rock {
@@ -199,6 +200,12 @@ input {
     background-color: tan;
     background: url(images/tileSets/castle.png) -224px -352px;
 }
+
+.water {
+    background-color: royalblue;
+    background: url(images/tileSets/castle.png) 0px -384px;;
+}
+
 
 /*.dirt {*/
 /*background-color: tan;*/

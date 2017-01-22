@@ -12,7 +12,7 @@ function Weapon(parent, name, type){
     this.xPos = game.heroObj.xPos + game.heroObj.width/2;
     this.yPos = game.heroObj.yPos + game.heroObj.height/2;
     this.size = 12;
-    this.speed = 5;
+    this.speed = 3;
     this.startPoint = {x: 0, y: 0};
     this.throwDistance = 100;
     this.bulletLife = 600;

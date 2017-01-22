@@ -117,7 +117,6 @@ function GameController() {
                 self.cursorX = e.clientX;
                 self.cursorY = e.clientY;
                 // console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
-                // game.makeRock();
                 game.heroObj.quickThrow();
                 break;
         }

@@ -10,8 +10,6 @@ $(document).ready(function () {
     $('#loginBtn').click(logIn);
     $('#signUpBtn').click(signUp);
     $('#logoutBtn').click(logOut);
-
-
     game.addEventHandlers();
 });
 
