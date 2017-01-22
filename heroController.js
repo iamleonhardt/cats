@@ -65,7 +65,6 @@ function Hero(parent, name) {
             class: 'chatBubble hide',
             text: 'Hello!'
         });
-        // this.domElem.append(nameDiv, chatBubble);
 
         $(heroUI).append(nameDiv, chatBubble);
         this.domElem.append(heroUI);
@@ -147,7 +146,6 @@ function Hero(parent, name) {
         }, 1500);
     };
 
-
     // Get Rock
     this.getRock = function () {
         console.log(this.name + ' picks up a rock');
@@ -171,7 +169,6 @@ function Hero(parent, name) {
         } else if (this.hasRock == false) {
             console.log('I need a rock');
         }
-
     };
 
     // Quick Throw Skill

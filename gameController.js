@@ -56,14 +56,6 @@ function GameController() {
         $('#gameArea').append(this.domElem);
     };
 
-    // this.createLoginBtn = function(){
-    //     var googleLoginBtn = $('<div>', {
-    //         id: 'loginBtn',
-    //         text: 'login'
-    //     });
-    //     $('#gameArea').append(loginBtn);
-    // }
-
     this.makeHero = function (name) {
         var hero = new Hero(this, name);
         this.heroObj = hero;
