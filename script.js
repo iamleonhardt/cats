@@ -34,8 +34,10 @@ function logIn (){
     var pass = $('#passInput').val();
     // Sign In
     var promise = auth.signInWithEmailAndPassword(email, pass);
+    $('#emailInput').val('');
+    $('#passInput').val('');
     promise.catch(function(data){
-        // console.log(data.message)
+        console.log(data.message)
     })
 }
 
@@ -83,7 +85,8 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
         // User is logged out
     } else {
         console.log('User not logged in');
-        $('#logoutBtn').addClass('hide');
+        $('#settingsUI').toggleClass('hide');
+        $('#loginUI').toggleClass('hide');
         $('#heroHUDContainer').addClass('hide');
     }
 });
