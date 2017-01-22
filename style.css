@@ -10,6 +10,8 @@ body {
     height: 900px;
     position: relative;
     background-color: #474538;
+    box-sizing: border-box;
+    overflow:hidden;
     /*background-image: url(images/scene.png);*/
 }
 
@@ -136,6 +138,7 @@ input {
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
+    z-index: 1000;
 }
 
 #heroHpHUD {
