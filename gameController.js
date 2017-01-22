@@ -157,6 +157,9 @@ function GameController() {
             case 71: // get rock
                 game.heroObj.getRock();
                 break;
+            case 86: // random emote
+                game.heroObj.ranEmote();
+            break;
         }
     };
 
