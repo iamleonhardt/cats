@@ -11,6 +11,8 @@ function GameController() {
     this.controlsShield = 65;
     this.controlsDig = 71;
     this.controlsEmote = 86;
+    this.width = 1440;
+    this.height = 900;
 
     this.cursorX = 0;
     this.cursorY = 0;
@@ -22,6 +24,7 @@ function GameController() {
         this.createLoginElems();
         this.createSettingsMenuElems();
         this.createHeroHUD();
+        this.makeHero('Dummy');
     };
 
     this.createLoginElems = function () {
