@@ -79,7 +79,7 @@ function Weapon(parent, name, type){
 
         if (this.xPos < 0 || this.xPos > 1440 || this.yPos < 0 || this.yPos > 896){
             this.die();
-            console.log('removing rock');
+            // console.log('removing rock');
         }
 
         this.rockElem.css({

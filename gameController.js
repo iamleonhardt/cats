@@ -4,10 +4,13 @@
 
 function GameController() {
     var self = this;
-    this.controlsLeft = 83;
     this.controlsUp = 69;
     this.controlsRight = 70;
     this.controlsDown = 67;
+    this.controlsLeft = 83;
+    this.controlsShield = 65;
+    this.controlsDig = 71;
+    this.controlsEmote = 86;
 
     this.cursorX = 0;
     this.cursorY = 0;
@@ -17,16 +20,13 @@ function GameController() {
         buildRandomMapArray();
         drawMap(randomizedMapArr);
         this.createLoginElems();
+        this.createSettingsMenuElems();
         this.createHeroHUD();
     };
 
     this.createLoginElems = function () {
         this.domElem = $('<div>', {
             id: 'loginUI'
-        });
-        var nameInput = $('<input>', {
-            id: 'nameInput',
-            placeholder: 'Username'
         });
         var emailInput = $('<input>', {
             id: 'emailInput',
@@ -42,19 +42,116 @@ function GameController() {
             text: 'Log in',
             class: 'loginBtn'
         });
-        var createAcctBtn = $('<div>', {
+        var signUpBtn = $('<p>', {
+            id: 'signUpRedirect',
+            text: 'Create Account'
+        });
+
+        this.domElem.append(emailInput, passInput, loginBtn, signUpBtn);
+        $('#gameArea').append(this.domElem);
+        $('#signUpRedirect').click(function(){
+            $('#loginUI').remove();
+            self.createSignUpElems();
+        });
+    };
+
+    this.createSignUpElems = function () {
+        this.domElem = $('<div>', {
+            id: 'signUpUI'
+        });
+        var nameInput = $('<input>', {
+            id: 'nameInput',
+            placeholder: 'Username'
+        });
+        var emailInput = $('<input>', {
+            id: 'emailInput',
+            placeholder: 'Email'
+        });
+        var passInput = $('<input>', {
+            id: 'passInput',
+            placeholder: 'Password',
+            type: 'password'
+        });
+        var loginBtn = $('<div>', {
             id: 'signUpBtn',
-            text: 'Create Account',
+            text: 'Create Account and Log In',
             class: 'loginBtn'
         });
+        var signUpBtn = $('<p>', {
+            id: 'cancelBtn',
+            text: 'Cancel'
+        });
+
+        this.domElem.append(nameInput, emailInput, passInput, loginBtn, signUpBtn);
+        $('#gameArea').append(this.domElem);
+        $('#cancelBtn').click(function(){
+            $('#signUpUI').remove();
+            self.createLoginElems();
+        })
+    };
+
+    this.createSettingsMenuElems = function(){
+        this.domElem = $('<div>', {
+            id: 'settingsUI',
+            class: 'hide',
+            text: 'Settings'
+        });
+        // Controls
+        // move up
+        var upInput = $('<input>', {
+            id: 'upInput',
+            class: 'controls',
+            placeholder: 'move up : ' + String.fromCharCode(self.controlsUp)
+        })
+        // right
+        var rightInput = $('<input>', {
+            id: 'rightInput',
+            class: 'controls',
+            placeholder: 'move right : ' + String.fromCharCode(self.controlsRight)
+        })
+        // down
+        var downInput = $('<input>', {
+            id: 'downInput',
+            class: 'controls',
+            placeholder: 'move down : ' + String.fromCharCode(self.controlsDown)
+        })
+        // left
+        var leftInput = $('<input>', {
+            id: 'leftInput',
+            class: 'controls',
+            placeholder: 'move left : ' + String.fromCharCode(self.controlsLeft)
+        })
+        // shield
+        var shieldInput = $('<input>', {
+            id: 'shieldInput',
+            class: 'controls',
+            placeholder: 'shield : ' + String.fromCharCode(self.controlsShield)
+        })
+        // dig
+        var digInput = $('<input>', {
+            id: 'digInput',
+            class: 'controls',
+            placeholder: 'find rock : ' + String.fromCharCode(self.controlsDig)
+        })
+        //emote
+        var emoteInput = $('<input>', {
+            id: 'emoteInput',
+            class: 'controls',
+            placeholder: 'emote : ' + String.fromCharCode(self.controlsEmote)
+        })
+
+
+
         var logoutBtn = $('<div>', {
             id: 'logoutBtn',
             text: 'Log out',
-            class: 'loginBtn hide'
+            class: 'loginBtn'
         });
-        this.domElem.append(nameInput, emailInput, passInput, loginBtn, createAcctBtn, logoutBtn);
+        this.domElem.append(upInput, rightInput, downInput, leftInput, shieldInput, digInput, emoteInput, logoutBtn);
         $('#gameArea').append(this.domElem);
-    };
+    }
+
+
 
     this.makeHero = function (name) {
         var hero = new Hero(this, name);
@@ -99,7 +196,7 @@ function GameController() {
                 // console.log('left mouse clicked');
                 self.cursorX = e.clientX;
                 self.cursorY = e.clientY;
-                console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
+                // console.log('cursorX is : ', self.cursorX + ' and cursorY is : ', self.cursorY);
                 // game.makeRock();
                 game.heroObj.throw();
 
@@ -138,17 +235,17 @@ function GameController() {
                 break;
 
             case 27: // toggle Login
-                $('#loginUI').toggleClass('hide');
+                $('#settingsUI').toggleClass('hide');
                 break;
 
-            case 65: // shield
+            case self.controlsShield: // shield
                 game.heroObj.shield();
                 break;
 
-            case 71: // get rock
+            case self.controlsDig: // get rock
                 game.heroObj.getRock();
                 break;
-            case 86: // random emote
+            case self.controlsEmote: // random emote
                 game.heroObj.ranEmote();
             break;
         }
