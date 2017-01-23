@@ -4,10 +4,13 @@
 
 function GameController() {
     var self = this;
-    this.controlsLeft = 83;
     this.controlsUp = 69;
     this.controlsRight = 70;
     this.controlsDown = 67;
+    this.controlsLeft = 83;
+    this.controlsShield = 65;
+    this.controlsDig = 71;
+    this.controlsEmote = 86;
 
     this.cursorX = 0;
     this.cursorY = 0;
@@ -93,12 +96,58 @@ function GameController() {
             class: 'hide',
             text: 'Settings'
         });
+        // Controls
+        // move up
+        var upInput = $('<input>', {
+            id: 'upInput',
+            class: 'controls',
+            placeholder: 'move up : ' + String.fromCharCode(self.controlsUp)
+        })
+        // right
+        var rightInput = $('<input>', {
+            id: 'rightInput',
+            class: 'controls',
+            placeholder: 'move right : ' + String.fromCharCode(self.controlsRight)
+        })
+        // down
+        var downInput = $('<input>', {
+            id: 'downInput',
+            class: 'controls',
+            placeholder: 'move down : ' + String.fromCharCode(self.controlsDown)
+        })
+        // left
+        var leftInput = $('<input>', {
+            id: 'leftInput',
+            class: 'controls',
+            placeholder: 'move left : ' + String.fromCharCode(self.controlsLeft)
+        })
+        // shield
+        var shieldInput = $('<input>', {
+            id: 'shieldInput',
+            class: 'controls',
+            placeholder: 'shield : ' + String.fromCharCode(self.controlsShield)
+        })
+        // dig
+        var digInput = $('<input>', {
+            id: 'digInput',
+            class: 'controls',
+            placeholder: 'find rock : ' + String.fromCharCode(self.controlsDig)
+        })
+        //emote
+        var emoteInput = $('<input>', {
+            id: 'emoteInput',
+            class: 'controls',
+            placeholder: 'emote : ' + String.fromCharCode(self.controlsEmote)
+        })
+
+
+
         var logoutBtn = $('<div>', {
             id: 'logoutBtn',
             text: 'Log out',
             class: 'loginBtn'
         });
-        this.domElem.append(logoutBtn);
+        this.domElem.append(upInput, rightInput, downInput, leftInput, shieldInput, digInput, emoteInput, logoutBtn);
         $('#gameArea').append(this.domElem);
     }
 
@@ -189,14 +238,14 @@ function GameController() {
                 $('#settingsUI').toggleClass('hide');
                 break;
 
-            case 65: // shield
+            case self.controlsShield: // shield
                 game.heroObj.shield();
                 break;
 
-            case 71: // get rock
+            case self.controlsDig: // get rock
                 game.heroObj.getRock();
                 break;
-            case 86: // random emote
+            case self.controlsEmote: // random emote
                 game.heroObj.ranEmote();
             break;
         }
