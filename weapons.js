@@ -2,13 +2,15 @@
  * Created by Bill on 1/20/17.
  */
 
-
-function Weapon(parent, name, type){
+function Weapon(owner, type){
     var self = this;
     this.parent = parent;
+    this.owner = owner;
     this.rockElem = null;
-    this.name = name;
+    this.name = owner.name;
     this.type = type;
+    this.width = 12;
+    this.height = 12;
     this.xPos = game.heroObj.xPos + game.heroObj.width/2;
     this.yPos = game.heroObj.yPos + game.heroObj.height/2;
     this.size = 12;
@@ -17,15 +19,14 @@ function Weapon(parent, name, type){
     this.throwDistance = 100;
     this.bulletLife = 600;
 
-
     this.init = function () {
         this.rockElem = this.createRockElem();
-        this.startHeartbeat();
+        self.startHeartbeat();
+        // Start counter for bullet life
         setTimeout(function(){
             self.die();
         }, self.bulletLife);
         return this.rockElem;
-
     };
 
     this.startHeartbeat = function () {
@@ -37,25 +38,25 @@ function Weapon(parent, name, type){
     };
 
     this.performHeartbeat = function () {
-            self.move();
+        self.bulletHitsHero();
+        self.move();
     };
 
-
     this.createRockElem = function () {
-        this.xTraj = game.cursorX - game.heroObj.xPos;
-        this.yTraj = game.cursorY - game.heroObj.yPos;
-        // console.log('IN WEAPONS cursorX is : ', game.cursorX, ' and cursorY is : ', game.cursorY);
+        // Determine direction from hero to cursor
+        this.xTraj = game.cursorX  - this.xPos;
+        this.yTraj = game.cursorY - this.yPos;
 
+        // Normalize the unit length
         this.len = Math.sqrt(Math.pow(this.xTraj, 2) + Math.pow(this.yTraj,2));
         this.normalizedX = this.xTraj / this.len;
         this.normalizedY = this.yTraj / this.len;
 
-        // console.log('Normalized x and y are : ', this.normalizedX, this.normalizedY);
-
+        // Determine Velocity
         this.velocityX = this.normalizedX * this.speed;
         this.velocityY = this.normalizedY * this.speed;
-        // console.log('Velocity  x and y are : ', this.velocityX, this.velocityY);
 
+        // Create Dom Elem
         this.rockElem = $('<div>', {
             class: self.type,
             css: {
@@ -68,20 +69,37 @@ function Weapon(parent, name, type){
         return this.rockElem;
     };
 
+    this.bulletHitsHero = function(){
+        var heroHit = game.checkCollisions(self);
+        if(heroHit){
+            console.log('heroHit is : ', heroHit);
+            self.die();
+            self.owner.levelUp();
+            heroHit.hitpoints -= 4;
+            $(heroHit.hpDiv).text(heroHit.hitpoints);
+            if(heroHit.hitpoints < 1){
+                heroHit.heroDie();
+            }
+        }
+    }
+
+    // Removes the Dom elem and stops heartbeat to clear memory
     this.die = function(){
         $(this.rockElem).remove();
         this.stopHeartbeat();
     };
 
     this.move = function(){
+        // Increment position by velocity every heartbeat
         this.xPos += this.velocityX;
         this.yPos += this.velocityY;
 
-        if (this.xPos < 0 || this.xPos > 1440 || this.yPos < 0 || this.yPos > 896){
+        // Remove bullet if out of game area
+        if (this.xPos < 0 || this.xPos > game.width || this.yPos < 0 || this.yPos > game.height){
             this.die();
-            // console.log('removing rock');
         }
 
+        // Move bullet sprite by updating css
         this.rockElem.css({
             left: this.xPos + 'px',
             top: this.yPos + 'px'
