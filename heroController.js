@@ -6,18 +6,20 @@ function Hero(parent, name) {
     var self = this;
     this.parent = parent;
     this.domElem = null;
+    this.chatBub = null;
     this.heroSprite = 'hero1 ';
     this.name = name;
+    this.level = 1;
     this.hitpoints = 10;
-    this.speed = 5;
+    this.speed = 2;
     this.immune = false;
 
     this.heartbeatInterval = 15;
     this.animationClass = '';
     this.horizontalTraj = 0;
     this.verticalTraj = 0;
-    this.width = 48;
-    this.height = 48;
+    this.width = 42;
+    this.height = 42;
     this.xPos = (game.width / 2) - this.width / 2;
     this.yPos = (game.height / 2) - this.height / 2;
 
@@ -59,12 +61,17 @@ function Hero(parent, name) {
                 text: this.name
             }
         );
+        this.hpDiv = $('<div>', {
+            id: 'heroHP',
+            class: 'heroUI',
+            text: this.hitpoints
+        })
         var chatBubble = $('<div>', {
             class: 'chatBubble hide',
             text: 'Hello!'
         });
 
-        $(heroUI).append(nameDiv, chatBubble);
+        $(heroUI).append(nameDiv, this.hpDiv, chatBubble);
         this.domElem.append(heroUI);
         return this.domElem;
     };
@@ -78,6 +85,7 @@ function Hero(parent, name) {
     };
 
     this.performHeartbeat = function () {
+        game.checkCollisions(self);
         // Stand still if no keys pressed
         if (self.horizontalTraj == 0 && self.verticalTraj == 0) {
             self.standStill();
@@ -99,6 +107,12 @@ function Hero(parent, name) {
         // X Movement
         this.xPos += this.horizontalTraj * this.speed;
 
+        // Hero Collisions
+        if (game.checkCollisions(self)){
+            console.log('heros collided');
+            this.xPos -= this.horizontalTraj * this.speed;
+        }
+
         // X collision
         if (this.xPos < 0) {
             this.xPos = 0;
@@ -109,6 +123,12 @@ function Hero(parent, name) {
 
         // Y Movement
         this.yPos += this.verticalTraj * this.speed;
+
+        // Hero Collisions
+        if (game.checkCollisions(self)){
+            console.log('heros collided');
+            this.yPos -= this.verticalTraj * this.speed;
+        }
 
         // Y Collision
         if (this.yPos < 0) {
@@ -124,6 +144,19 @@ function Hero(parent, name) {
             left: (this.xPos) + 'px'
         });
     };
+
+    // this.checkCollisions = function(self){
+    //     for(var i = 0; i < game.herosArr.length; i++){
+    //         if(game.herosArr[i].name != self.name){
+    //             if(game.intersects(self, game.herosArr[i])){
+    //                 return true;
+    //                 // console.log('I am ' + self.name + ' and ' + game.herosArr[i].name + ' collided into me');
+    //             }
+    //         }
+    //     }
+    //
+    // };
+
 
     this.getRanNum = function (min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -159,7 +192,7 @@ function Hero(parent, name) {
             var throwSound = new Audio('sounds/throw.mp3');
             throwSound.play();
             console.log(this.name + ' throws a rock.');
-            game.makeWeapon('rock', 'rock');
+            game.makeWeapon(self, 'rock');
             this.hasRock = false;
             this.throwReady = false;
             setTimeout(function () {
@@ -179,7 +212,7 @@ function Hero(parent, name) {
         if (this.quickThrowReady) {
             var throwSound = new Audio('sounds/throw.mp3');
             throwSound.play();
-            game.makeWeapon('rock', 'rock2');
+            game.makeWeapon(self, 'rock2');
 
             this.quickThrowReady = false;
 
@@ -211,4 +244,24 @@ function Hero(parent, name) {
             }, this.shieldCooldown)
         }
     };
+
+
+
+    // XP and Levels
+    this.levelUp = function(){
+        self.level++;
+        self.speed++;
+        $('#heroLvlHUD').text('Level: ' + self.level);
+
+    }
+
+    // Hero Death
+    this.heroDie = function(){
+        $(this.domElem).remove();
+        this.stopHeartbeat();
+        var index = game.herosArr.indexOf(self);
+        console.log('index is : ', index);
+        game.herosArr.splice(index, 1);
+        console.log('game.herosArr is : ', game.herosArr)
+    }
 }

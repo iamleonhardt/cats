@@ -2,12 +2,15 @@
  * Created by Bill on 1/20/17.
  */
 
-function Weapon(parent, name, type){
+function Weapon(owner, type){
     var self = this;
     this.parent = parent;
+    this.owner = owner;
     this.rockElem = null;
-    this.name = name;
+    this.name = owner.name;
     this.type = type;
+    this.width = 12;
+    this.height = 12;
     this.xPos = game.heroObj.xPos + game.heroObj.width/2;
     this.yPos = game.heroObj.yPos + game.heroObj.height/2;
     this.size = 12;
@@ -18,7 +21,7 @@ function Weapon(parent, name, type){
 
     this.init = function () {
         this.rockElem = this.createRockElem();
-        this.startHeartbeat();
+        self.startHeartbeat();
         // Start counter for bullet life
         setTimeout(function(){
             self.die();
@@ -35,7 +38,8 @@ function Weapon(parent, name, type){
     };
 
     this.performHeartbeat = function () {
-            self.move();
+        self.bulletHitsHero();
+        self.move();
     };
 
     this.createRockElem = function () {
@@ -64,6 +68,20 @@ function Weapon(parent, name, type){
         });
         return this.rockElem;
     };
+
+    this.bulletHitsHero = function(){
+        var heroHit = game.checkCollisions(self);
+        if(heroHit){
+            console.log('heroHit is : ', heroHit);
+            self.die();
+            self.owner.levelUp();
+            heroHit.hitpoints -= 4;
+            $(heroHit.hpDiv).text(heroHit.hitpoints);
+            if(heroHit.hitpoints < 1){
+                heroHit.heroDie();
+            }
+        }
+    }
 
     // Removes the Dom elem and stops heartbeat to clear memory
     this.die = function(){

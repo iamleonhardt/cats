@@ -4,15 +4,17 @@
 
 function GameController() {
     var self = this;
-    this.controlsUp = 69;
-    this.controlsRight = 70;
-    this.controlsDown = 67;
-    this.controlsLeft = 83;
-    this.controlsShield = 65;
+    this.controlsUp = 87;
+    this.controlsRight = 68;
+    this.controlsDown = 83;
+    this.controlsLeft = 65;
+    this.controlsShield = 49;
     this.controlsDig = 71;
     this.controlsEmote = 86;
     this.width = 1440;
     this.height = 900;
+    this.herosArr = [];
+    this.bulletArr = [];
 
     this.cursorX = 0;
     this.cursorY = 0;
@@ -154,17 +156,33 @@ function GameController() {
         $('#gameArea').append(this.domElem);
     }
 
+    this.intersects = function(a, b){
+        return a.xPos < b.xPos + b.width && a.xPos + a.width > b.xPos && a.yPos < b.yPos + b.height  && a.yPos + a.height > b.yPos;
+    }
 
+    this.checkCollisions = function(whoToCheck){
+        for(var i = 0; i < self.herosArr.length; i++){
+            if(self.herosArr[i].name != whoToCheck.name){
+                if(self.intersects(whoToCheck, self.herosArr[i])){
+                    console.log('collision!!BBQ');
+                    return self.herosArr[i];
+                    // return true;
+                    // console.log('I am ' + self.name + ' and ' + game.herosArr[i].name + ' collided into me');
+                }
+            }
+        }
+    };
 
     this.makeHero = function (name) {
         var hero = new Hero(this, name);
+        this.herosArr.push(hero);
         this.heroObj = hero;
         var heroDomElem = this.heroObj.init();
         this.gameArea.append(heroDomElem);
     };
 
-    this.makeWeapon = function (name, type) {
-        var weapon = new Weapon(this, name, type);
+    this.makeWeapon = function (owner, type) {
+        var weapon = new Weapon(owner, type);
         this.weaponObj = weapon;
         var weaponDomElem = this.weaponObj.init();
         this.gameArea.append(weaponDomElem);
