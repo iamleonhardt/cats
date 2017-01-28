@@ -264,6 +264,9 @@ function Hero(parent, name, x, y) {
         var index = game.herosArr.indexOf(self);
         console.log('index is : ', index);
         game.herosArr.splice(index, 1);
-        console.log('game.herosArr is : ', game.herosArr)
+        console.log('game.herosArr is : ', game.herosArr);
+        setTimeout(function(){
+            game.makeHero(self.name, 500, 500)
+        }, 5000)
     }
 }
