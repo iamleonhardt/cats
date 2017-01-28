@@ -26,7 +26,7 @@ function GameController() {
         this.createLoginElems();
         this.createSettingsMenuElems();
         this.createHeroHUD();
-        this.makeHero('Dummy');
+        this.makeHero('Dummy', 500, 500);
     };
 
     this.createLoginElems = function () {
@@ -173,8 +173,8 @@ function GameController() {
         }
     };
 
-    this.makeHero = function (name) {
-        var hero = new Hero(this, name);
+    this.makeHero = function (name, x, y) {
+        var hero = new Hero(this, name, x, y);
         this.herosArr.push(hero);
         this.heroObj = hero;
         var heroDomElem = this.heroObj.init();

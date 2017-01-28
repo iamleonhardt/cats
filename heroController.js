@@ -2,7 +2,7 @@
  * Created by bill on 1/8/17.
  */
 
-function Hero(parent, name) {
+function Hero(parent, name, x, y) {
     var self = this;
     this.parent = parent;
     this.domElem = null;
@@ -20,8 +20,10 @@ function Hero(parent, name) {
     this.verticalTraj = 0;
     this.width = 42;
     this.height = 42;
-    this.xPos = (game.width / 2) - this.width / 2;
-    this.yPos = (game.height / 2) - this.height / 2;
+    this.xPos = x;
+    this.yPos = y;
+    // this.xPos = (game.width / 2) - this.width / 2;
+    // this.yPos = (game.height / 2) - this.height / 2;
 
     // Skill Properties
     this.hasRock = false;
