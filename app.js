@@ -2,23 +2,20 @@
  * Created by bill on 1/10/17.
  */
 
-
-console.log('Mushies Great Adventures');
-
+// console.log('Mushies Great Adventures');
 
 var express = require('express');
 var app = express();
-var serv = require('http').Server(app);
-var io = require('socket.io')(serv,{});
-serv.listen(2000);
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+server.listen(2000);
 
 
 app.get('/',function(req, res){
     res.sendFile(__dirname + '/client/index.html');
 });
 // app.use('/client',express.static(__dirname + '/client'));
-
-
 
 
 io.sockets.on('connection', function(socket){
