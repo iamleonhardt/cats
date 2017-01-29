@@ -10,12 +10,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/iamleonhardt/cats.git"
+    "url": "git+https://github.com/iamleonhardt/hero.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/iamleonhardt/cats/issues"
+    "url": "https://github.com/iamleonhardt/hero/issues"
   },
-  "homepage": "https://github.com/iamleonhardt/cats#readme"
+  "homepage": "https://github.com/iamleonhardt/hero#readme"
 }

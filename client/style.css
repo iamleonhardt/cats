@@ -3,46 +3,204 @@ body {
     padding: 0;
     font-family: 'VT323', monospace;
     color: #ffffff;
-
 }
 
 #gameArea {
     width: 1440px;
     height: 900px;
     position: relative;
-    background-color: silver;
+    background-color: #474538;
+    box-sizing: border-box;
+    overflow: hidden;
     /*background-image: url(images/scene.png);*/
 }
 
-#hero {
-    width: 48px;
-    height: 48px;
+#loginUI {
+    width: 210px;
+    /*height: 200px;*/
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
     position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: black;
+}
+
+#signUpUI {
+    width: 210px;
+    /*height: 200px;*/
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: black;
+}
+
+.loginBtn {
+    position: relative;
+    display: inline-block;
+    padding: 6px 4px 6px 4px;
+    margin: 10px 0;
+    width: 100%;
+    vertical-align: middle;
+    color: #fff;
+    font-size: 16px;
+    line-height: 20px;
+    -webkit-font-smoothing: antialiased;
+    text-align: center;
+    letter-spacing: 1px;
+    background: #c4ad9b;
+    border: 0;
+    border-bottom: 2px solid #77695e;
+    cursor: pointer;
+    -webkit-transition: all 0.15s ease;
+    transition: all 0.15s ease;
+}
+
+input {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 6px 6px 6px 2px;
+    -webkit-appearance: none;
+    display: block;
+    background: #fafafa;
+    color: #636363;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid #757575;
+}
+
+.hide {
+    display: none;
+}
+
+#settingsUI {
+    width: 210px;
+    /*height: 200px;*/
+    padding: 28px;
+    background: #fafafa;
+    border: 1px solid #ebebeb;
+    box-shadow: rgba(0, 0, 0, 0.14902) 0px 1px 1px 0px, rgba(0, 0, 0, 0.09804) 0px 1px 2px 0px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    color: black;
+}
+
+/* Hero UI */
+#hero {
+    position: absolute;
+    text-align: center;
+    margin: 0 auto;
+}
+
+#heroUI {
+    position: relative;
+    bottom: 12px;
 }
 
 .heroUI {
     /*display: inline-block;*/
-    position: relative;
-    bottom: 17px;
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 #heroName {
     animation: nameColor 2s ease infinite;
     text-align: center;
-
 }
 
 @keyframes nameColor {
-    0% { color: #ffffff;}
-    50% { color: #d3d3d3;}
-    100% { color: #ffffff;}
-
+    0% {
+        color: #ffffff;
+    }
+    50% {
+        color: #d3d3d3;
+    }
+    100% {
+        color: #ffffff;
+    }
 }
+
 #heroHP {
-    visibility: hidden;
-
+    height: 6px;
+    width: 40px;
+    /*background-color: #dc0c0c;*/
+    /*text-align: center;*/
+    top: 39px;
+    left: 45px;
+    border-radius: 4px;
 }
 
+/* Speech Bubbles */
+.chatBubble {
+    position: absolute;
+    width: auto;
+    top: 14px;
+    left: 48px;
+    padding: 3px 5px;
+    color: #000;
+    background: #5dd3f3;
+    border-radius: 10px;
+    background: linear-gradient(#6ccfd0, #187fc1);
+}
+
+.rock {
+    border-radius: 50%;
+    background-color: #00e3bb;
+    background: url(images/tileSets/castle.png) -45px -206px;
+    position: absolute;
+}
+
+.rock2 {
+    border-radius: 50%;
+    background-color: #3dac22;
+    /*background: url(images/tileSets/castle.png) -45px -206px;*/
+    position: absolute;
+}
+
+/* Hero HUD */
+#heroHUDContainer {
+    width: 240px;
+    /*height: 20px;*/
+    background-color: #474538;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000;
+}
+
+#heroHpHUD {
+    width: 240px;
+    /*height: 6px;*/
+    background-color: #772020;
+    position: absolute;
+    bottom: 26px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+}
+
+.heroHUD {
+    display: inline-block;
+    padding: 5px;
+}
 
 /* Tile Map */
 .tile {
@@ -55,7 +213,6 @@ body {
 .grass {
     background-color: mediumseagreen;
     background: url(images/tileSets/castle.png) 0px -352px;
-
 }
 
 .dirt {
@@ -63,182 +220,198 @@ body {
     background: url(images/tileSets/castle.png) -224px -352px;
 }
 
+.water {
+    background-color: royalblue;
+    background: url(images/tileSets/castle.png) 0px -384px;;
+}
+
+
 /*.dirt {*/
-    /*background-color: tan;*/
-    /*background: url(images/tileSets/pathsAndObjects.png) -224px -352px;*/
+/*background-color: tan;*/
+/*background: url(images/tileSets/pathsAndObjects.png) -224px -352px;*/
 /*}*/
 
-/* Hero 001 */
-
-.stand {
+/* HERO 1 */
+.hero1.stand {
     background: url(images/heros/mushy.png) -48px 0px;
 }
 
-.down {
-    background: url(images/heros/mushy.png) 0px 0px;
-    animation: walkDown .4s steps(3) infinite;
-}
-
-@keyframes walkDown {
-    100% { background-position: -144px 0px; }
-}
-
-.left {
-background: url(images/heros/mushy.png) 0px -48px;
-animation: walkLeft .4s steps(3) infinite;
-}
-
-@keyframes walkLeft {
-100% { background-position: -144px -48px; }
-}
-
-.right {
-    background: url(images/heros/mushy.png) 0px -96px;
-    animation: walkRight .4s steps(3) infinite;
-}
-
-@keyframes walkRight {
-    100% { background-position: -144px -96px; }
-}
-
-.up {
+.hero1.up {
     background: url(images/heros/mushy.png) 0px -144px;
     animation: walkUp .4s steps(3) infinite;
 }
 
 @keyframes walkUp {
-    100% { background-position: -144px -144px; }
+    100% {
+        background-position: -144px -144px;
+    }
 }
 
+.hero1.right {
+    background: url(images/heros/mushy.png) 0px -96px;
+    animation: walkRight .4s steps(3) infinite;
+}
 
+@keyframes walkRight {
+    100% {
+        background-position: -144px -96px;
+    }
+}
 
-/* Grey Cats */
+.hero1.down {
+    background: url(images/heros/mushy.png) 0px 0px;
+    animation: walkDown .4s steps(3) infinite;
+}
 
-/*.stand {*/
-    /*background: url(mushy.png) -196px 0px;*/
+@keyframes walkDown {
+    100% {
+        background-position: -144px 0px;
+    }
+}
+
+.hero1.left {
+    background: url(images/heros/mushy.png) 0px -48px;
+    animation: walkLeft .4s steps(3) infinite;
+}
+
+@keyframes walkLeft {
+    100% {
+        background-position: -144px -48px;
+    }
+}
+
+/* SKILLS */
+#shieldElem {
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    background-color: rgba(192, 192, 192, 0.3);
+    animation: shield 2s ease infinite;
+}
+
+@keyframes shield {
+    0% {
+        background-color: rgba(192, 192, 192, 0.2);
+    }
+    50% {
+        background-color: rgba(224, 238, 213, 0.3);
+    }
+    100% {
+        background-color: rgba(192, 192, 192, 0.2);
+    }
+}
+
+/*!* HERO 2 *!*/
+
+/*.hero2.stand {*/
+/*background: url(images/heros/mushy.png) -196px 0px;*/
 /*}*/
-
-/*.down {*/
-    /*background: url(mushy.png) -144px 0px;*/
-    /*animation: walkDown .4s steps(3) infinite;*/
+/*!*UP*!*/
+/*.hero2.up {*/
+/*background: url(images/heros/mushy.png) -144px -144px;*/
+/*animation: walkUp .4s steps(3) infinite;*/
 /*}*/
-
-/*@keyframes walkDown {*/
-    /*100% { background-position: -288px 0px; }*/
-/*}*/
-
-/*.left {*/
-    /*background: url(mushy.png) -144px -48px;*/
-    /*animation: walkLeft .4s steps(3) infinite;*/
-/*}*/
-
-/*@keyframes walkLeft {*/
-    /*100% { background-position: -288px -48px; }*/
-/*}*/
-
-/*.right {*/
-    /*background: url(mushy.png) -144px -96px;*/
-    /*animation: walkRight .4s steps(3) infinite;*/
-/*}*/
-
-/*@keyframes walkRight {*/
-    /*100% { background-position: -288px -96px; }*/
-/*}*/
-
-/*.up {*/
-    /*background: url(mushy.png) -144px -144px;*/
-    /*animation: walkUp .4s steps(3) infinite;*/
-/*}*/
-
 /*@keyframes walkUp {*/
-    /*100% { background-position: -288px -144px; }*/
+/*100% { background-position: -288px -144px; }*/
 /*}*/
-
-
-
-
-/* Light Brown Cats */
-
-/*.stand {*/
-    /*background: url(mushy.png) -48px -192px;*/
+/*!*RIGHT*!*/
+/*.hero2.right {*/
+/*background: url(images/heros/mushy.png) -144px -96px;*/
+/*animation: walkRight .4s steps(3) infinite;*/
 /*}*/
-
-/*.down {*/
-    /*background: url(mushy.png) 0px -192px;*/
-    /*animation: walkDown .4s steps(3) infinite;*/
-/*}*/
-
-/*@keyframes walkDown {*/
-    /*100% { background-position: -144px -196px; }*/
-/*}*/
-
-/*.left {*/
-    /*background: url(mushy.png) -0px -240px;*/
-    /*animation: walkLeft .4s steps(3) infinite;*/
-/*}*/
-
-/*@keyframes walkLeft {*/
-    /*100% { background-position: -144px -240px; }*/
-/*}*/
-
-/*.right {*/
-    /*background: url(mushy.png) -0px -288px;*/
-    /*animation: walkRight .4s steps(3) infinite;*/
-/*}*/
-
 /*@keyframes walkRight {*/
-    /*100% { background-position: -144px -288px; }*/
+/*100% { background-position: -288px -96px; }*/
 /*}*/
-
-/*.up {*/
-    /*background: url(mushy.png) -0px -336px;*/
-    /*animation: walkUp .4s steps(3) infinite;*/
+/*!*DOWN*!*/
+/*.hero2.down {*/
+/*background: url(images/heros/mushy.png) -144px 0px;*/
+/*animation: walkDown .4s steps(3) infinite;*/
 /*}*/
-
-/*@keyframes walkUp {*/
-    /*100% { background-position: -144px -336px; }*/
-/*}*/
-
-
-
-/* Spotted Brown Cats */
-
-/*.stand {*/
-    /*background: url(mushy.png) -192px -192px;*/
-/*}*/
-
-/*.down {*/
-    /*background: url(mushy.png) -144px -192px;*/
-    /*animation: walkDown .4s steps(3) infinite;*/
-/*}*/
-
 /*@keyframes walkDown {*/
-    /*100% { background-position: -288px -196px; }*/
+/*100% { background-position: -288px 0px; }*/
 /*}*/
-
-/*.left {*/
-    /*background: url(mushy.png) -144px -240px;*/
-    /*animation: walkLeft .4s steps(3) infinite;*/
+/*!*LEFT*!*/
+/*.hero2.left {*/
+/*background: url(images/heros/mushy.png) -144px -48px;*/
+/*animation: walkLeft .4s steps(3) infinite;*/
 /*}*/
-
 /*@keyframes walkLeft {*/
-    /*100% { background-position: -288px -240px; }*/
+/*100% { background-position: -288px -48px; }*/
 /*}*/
 
-/*.right {*/
-    /*background: url(mushy.png) -144px -288px;*/
-    /*animation: walkRight .4s steps(3) infinite;*/
+/*!* HERO 5 *!*/
+
+/*.hero5.stand {*/
+/*background: url(images/heros/mushy.png) -48px -192px;*/
 /*}*/
 
-/*@keyframes walkRight {*/
-    /*100% { background-position: -288px -288px; }*/
+/*!*UP*!*/
+/*.hero5.up {*/
+/*background: url(images/heros/mushy.png) -0px -336px;*/
+/*animation: walkUp .4s steps(3) infinite;*/
 /*}*/
-
-/*.up {*/
-    /*background: url(mushy.png) -144px -336px;*/
-    /*animation: walkUp .4s steps(3) infinite;*/
-/*}*/
-
 /*@keyframes walkUp {*/
-    /*100% { background-position: -288px -336px; }*/
+/*100% { background-position: -144px -336px; }*/
+/*}*/
+/*!*RIGHT*!*/
+/*.hero5.right {*/
+/*background: url(images/heros/mushy.png) -0px -288px;*/
+/*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkRight {*/
+/*100% { background-position: -144px -288px; }*/
+/*}*/
+/*!*DOWN*!*/
+/*.hero5.down {*/
+/*background: url(images/heros/mushy.png) 0px -192px;*/
+/*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkDown {*/
+/*100% { background-position: -144px -196px; }*/
+/*}*/
+/*!*LEFT*!*/
+/*.hero5.left {*/
+/*background: url(images/heros/mushy.png) -0px -240px;*/
+/*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkLeft {*/
+/*100% { background-position: -144px -240px; }*/
+/*}*/
+
+/*!* HERO 6 *!*/
+
+/*.hero6.stand {*/
+/*background: url(images/heros/mushy.png) -192px -192px;*/
+/*}*/
+/*!*UP*!*/
+/*.hero6.up {*/
+/*background: url(images/heros/mushy.png) -144px -336px;*/
+/*animation: walkUp .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkUp {*/
+/*100% { background-position: -288px -336px; }*/
+/*}*/
+/*!*RIGHT*!*/
+/*.hero6.right {*/
+/*background: url(images/heros/mushy.png) -144px -288px;*/
+/*animation: walkRight .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkRight {*/
+/*100% { background-position: -288px -288px; }*/
+/*}*/
+/*!*DOWN*!*/
+/*.hero6.down {*/
+/*background: url(images/heros/mushy.png) -144px -192px;*/
+/*animation: walkDown .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkDown {*/
+/*100% { background-position: -288px -196px; }*/
+/*}*/
+/*!*LEFT*!*/
+/*.hero6.left {*/
+/*background: url(images/heros/mushy.png) -144px -240px;*/
+/*animation: walkLeft .4s steps(3) infinite;*/
+/*}*/
+/*@keyframes walkLeft {*/
+/*100% { background-position: -288px -240px; }*/
 /*}*/

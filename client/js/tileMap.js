@@ -2,10 +2,10 @@
  * Created by bill on 1/8/17.
  */
 
-console.log('tilemap is loaded');
-
 var mapWidth = 45;
 var mapHeight = 28;
+var tileWidth = 32;
+var tileHeight = 32;
 
 
 // Make randomized map
@@ -22,17 +22,15 @@ var ranTileNum = 0;
         var tempArr = [];
         randomizedMapArr.push(tempArr);
 
-
         for (var j = 0; j < mapWidth; j++) {
-            var ranNum = getRanNum(0, 50);
+            var ranNum = getRanNum(0, 100);
             if(ranNum < 1){
+                ranTileNum = 2;
+            }else if (ranNum > 0 && ranNum < 5) {
                 ranTileNum = 1;
             }else {
                 ranTileNum = 0;
             }
-            // console.log('ranomdizedMapArr is : ', randomizedMapArr);
-            // console.log('i is : ', i + ' and j is : ', j);
-            // console.log('randTileNum is : ', ranTileNum);
             randomizedMapArr[i][j] = ranTileNum;
 
         }
@@ -74,7 +72,6 @@ var hardMapArr = [
 ];
 
 function drawMap(mapArr) {
-    console.log('drawMap fired');
     for (var i = 0; i < mapArr.length; i++) {
         for (var j = 0; j < mapArr[i].length; j++) {
 
@@ -92,6 +89,14 @@ function drawMap(mapArr) {
                     class: 'tile dirt'
                 });
                 $('#gameArea').append(dirtDiv);
+            }
+
+            //Make Water Tile
+            if (parseInt(mapArr[i][j]) == 2) {
+                var waterDiv = $('<div>', {
+                    class: 'tile water'
+                });
+                $('#gameArea').append(waterDiv);
             }
         }
     }

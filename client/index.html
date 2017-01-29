@@ -1,7 +1,20 @@
 Mushie Mushie
 
 <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-<script>var socket = io()</script>
+<script>
+    var socket = io();
+
+    socket.emit('happy', {
+        reason:'Im working on my game'
+    });
+
+    socket.on('serverMsg', function(data){
+        console.log(data.msg);
+    })
+</script>
+
+
+
 
 <!--<!DOCTYPE html>-->
 <!--<html lang="en">-->
@@ -9,15 +22,23 @@ Mushie Mushie
     <!--<meta charset="UTF-8">-->
     <!--<link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">-->
     <!--<link rel="stylesheet" href="style.css">-->
-    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
-    <!--<script src="js/script.js"></script>-->
-    <!--<script src="js/gameController.js"></script>-->
-    <!--<script src="js/tileMap.js"></script>-->
-
-    <!--<script src="js/heroController.js"></script>-->
-    <!--<title>Title</title>-->
+    <!--<title>Hero</title>-->
 <!--</head>-->
 <!--<body>-->
 <!--<div id="gameArea"></div>-->
+
+<!--<script src="https://www.gstatic.com/firebasejs/3.6.5/firebase.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+
+<!--<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-app.js"></script>-->
+<!--<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-auth.js"></script>-->
+<!--<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-database.js"></script>-->
+<!--<script src="https://www.gstatic.com/firebasejs/3.6.2/firebase-messaging.js"></script>-->
+
+<!--<script src="js/script.js"></script>-->
+<!--<script src="js/gameController.js"></script>-->
+<!--<script src="js/tileMap.js"></script>-->
+<!--<script src="js/heroController.js"></script>-->
+<!--<script src="js/weapons.js"></script>-->
 <!--</body>-->
 <!--</html>-->
