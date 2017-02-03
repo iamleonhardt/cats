@@ -11,22 +11,24 @@ var io = require('socket.io').listen(server);
 
 server.listen(2000);
 
+app.use('/', express.static(__dirname + '/client'));
 
-app.get('/',function(req, res){
-    res.sendFile(__dirname + '/client/index.html');
-});
-// app.use('/client',express.static(__dirname + '/client'));
 
 
 io.sockets.on('connection', function(socket){
     console.log('socket connection');
+    game.socket.id = Math.random();
+    game.socketList[socket.id] = socket;
+    console.log('socketList is : ', socketList);
 
-    socket.on('happy', function(data){
-        console.log('I am happy because ' + data.reason);
-    })
 
     socket.emit('serverMsg', {
-        msg: 'server says hello'
+        msg: 'hai'
     })
 
 });
+
+
+setInterval(function(){
+    console.log('hi');
+}, 40);

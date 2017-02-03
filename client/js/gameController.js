@@ -4,6 +4,12 @@
 
 function GameController() {
     var self = this;
+    this.socket.id = 0;
+    this.socketList = {};
+    this.heroList = {};
+
+
+    // controls
     this.controlsUp = 87;
     this.controlsRight = 68;
     this.controlsDown = 83;
@@ -11,6 +17,7 @@ function GameController() {
     this.controlsShield = 49;
     this.controlsDig = 71;
     this.controlsEmote = 86;
+
     this.width = 1440;
     this.height = 900;
     this.herosArr = [];
@@ -145,8 +152,6 @@ function GameController() {
             placeholder: 'emote : ' + String.fromCharCode(self.controlsEmote)
         })
 
-
-
         var logoutBtn = $('<div>', {
             id: 'logoutBtn',
             text: 'Log out',
@@ -164,7 +169,6 @@ function GameController() {
         for(var i = 0; i < self.herosArr.length; i++){
             if(self.herosArr[i].name != whoToCheck.name){
                 if(self.intersects(whoToCheck, self.herosArr[i])){
-                    console.log('collision!!BBQ');
                     return self.herosArr[i];
                     // return true;
                     // console.log('I am ' + self.name + ' and ' + game.herosArr[i].name + ' collided into me');
@@ -173,12 +177,14 @@ function GameController() {
         }
     };
 
-    this.makeHero = function (name, x, y) {
-        var hero = new Hero(this, name, x, y);
+    this.makeHero = function (name, x, y, id) {
+        var hero = new Hero(this, name, x, y, id);
         this.herosArr.push(hero);
         this.heroObj = hero;
         var heroDomElem = this.heroObj.init();
         this.gameArea.append(heroDomElem);
+        this.heroList[socket.id] = hero;
+
     };
 
     this.makeWeapon = function (owner, type) {
@@ -295,6 +301,7 @@ function GameController() {
     this.addEventHandlers = function () {
         $(document).keydown(game.handleKeypress);
         $(document).keyup(game.handleKeyup);
+        // disable right click menu
         $(document).contextmenu(function () {
             return false;
         });

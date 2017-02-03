@@ -74,7 +74,7 @@ firebase.auth().onAuthStateChanged(function(firebaseUser){
         var userRef =  firebase.database().ref('/users/' + uid).once('value').then(function(snapshot) {
             var username = snapshot.val().username;
             $('#userNameHUD').text(username);
-            game.makeHero(username,200, 200);
+            game.makeHero(username,200, 200, socket.id);
         });
 
         $('#logoutBtn').removeClass('hide');

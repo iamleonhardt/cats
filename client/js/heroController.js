@@ -2,9 +2,10 @@
  * Created by bill on 1/8/17.
  */
 
-function Hero(parent, name, x, y) {
+function Hero(parent, name, x, y, id) {
     var self = this;
     this.parent = parent;
+    this.id = id;
     this.domElem = null;
     this.chatBub = null;
     this.heroSprite = 'hero1 ';
